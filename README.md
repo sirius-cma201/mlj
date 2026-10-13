@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+A modern, glassmorphic portfolio site built with Next.js, React, and Tailwind CSS. Designed for senior-level positioning—clarity, outcomes, and production impact.
 
-First, run the development server:
+## Features
+
+- Glassmorphic UI with dark purple / lilac theme
+- Dark & light mode toggle
+- Scroll reveal animations (CSS + Intersection Observer)
+- Responsive, mobile-first layout
+- 3 project showcases with Problem → Solution → Tech → Impact structure
+- Environment-driven links and contact info
+
+## Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Copy env file and update your links
+cp .env.example .env.local
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_SITE_NAME` | Your name or initials |
+| `NEXT_PUBLIC_GITHUB_URL` | GitHub profile URL |
+| `NEXT_PUBLIC_EMAIL` | Contact email |
+| `NEXT_PUBLIC_LINKEDIN_URL` | LinkedIn profile (optional) |
+| `NEXT_PUBLIC_MARTHA_AI_GITHUB` | Martha AI repo |
+| `NEXT_PUBLIC_MARTHA_AI_DEMO` | Loom or demo link |
+| `NEXT_PUBLIC_MUSIC_SAAS_GITHUB` | Music SaaS repo |
+| `NEXT_PUBLIC_CRYPTO_TAX_GITHUB` | Crypto tax manager repo |
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Deploy to [Vercel](https://vercel.com) in one click:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push to GitHub
+2. Import repo in Vercel
+3. Add environment variables from `.env.example`
+4. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Projects**: Edit `src/data/projects.ts`
+- **Tech stack**: Edit `src/data/projects.ts` → `techStack`
+- **Project screenshots**: Replace SVGs in `public/projects/` with real screenshots or Loom thumbnails
+- **Colors**: Adjust CSS variables in `src/app/globals.css`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4

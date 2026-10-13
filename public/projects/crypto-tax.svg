@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0d0a14"/>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#0f0818"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6b21a8"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+  <text x="40" y="52" fill="#c4b5fd" font-family="monospace" font-size="11" letter-spacing="2">PORTFOLIO OVERVIEW</text>
+  <!-- Stats row -->
+  <rect x="40" y="72" width="170" height="72" rx="12" fill="rgba(20,10,35,0.7)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="52" y="88" width="80" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="52" y="108" width="100" height="14" rx="4" fill="#22c55e" opacity="0.9"/>
+  <rect x="230" y="72" width="170" height="72" rx="12" fill="rgba(20,10,35,0.7)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="242" y="88" width="90" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="242" y="108" width="80" height="14" rx="4" fill="#f4f0ff" opacity="0.8"/>
+  <rect x="420" y="72" width="170" height="72" rx="12" fill="rgba(20,10,35,0.7)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="432" y="88" width="70" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="432" y="108" width="110" height="14" rx="4" fill="#a855f7"/>
+  <rect x="610" y="72" width="150" height="72" rx="12" fill="rgba(20,10,35,0.7)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="622" y="88" width="60" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="622" y="108" width="90" height="14" rx="4" fill="#c4b5fd"/>
+  <!-- Chart area -->
+  <rect x="40" y="168" width="480" height="292" rx="16" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <path d="M60 400 L120 360 L180 370 L240 300 L300 320 L360 240 L420 260 L480 180 L500 200" stroke="url(#line)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M60 400 L120 360 L180 370 L240 300 L300 320 L360 240 L420 260 L480 180 L500 200 L500 420 L60 420 Z" fill="url(#line)" opacity="0.12"/>
+  <!-- Wallet list -->
+  <rect x="540" y="168" width="220" height="292" rx="16" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <text x="564" y="200" fill="#a89ec4" font-family="monospace" font-size="10" letter-spacing="1">WALLETS</text>
+  <rect x="564" y="216" width="172" height="52" rx="10" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.2)"/>
+  <circle cx="588" cy="242" r="12" fill="#f7931a"/>
+  <rect x="612" y="232" width="80" height="8" rx="4" fill="#f4f0ff" opacity="0.7"/>
+  <rect x="612" y="248" width="60" height="6" rx="3" fill="#a89ec4" opacity="0.4"/>
+  <rect x="564" y="280" width="172" height="52" rx="10" fill="rgba(124,58,237,0.1)" stroke="rgba(168,85,247,0.15)"/>
+  <circle cx="588" cy="306" r="12" fill="#627eea"/>
+  <rect x="612" y="296" width="70" height="8" rx="4" fill="#f4f0ff" opacity="0.6"/>
+  <rect x="612" y="312" width="50" height="6" rx="3" fill="#a89ec4" opacity="0.3"/>
+  <rect x="564" y="344" width="172" height="52" rx="10" fill="rgba(124,58,237,0.1)" stroke="rgba(168,85,247,0.15)"/>
+  <circle cx="588" cy="370" r="12" fill="#8247e5"/>
+  <rect x="612" y="360" width="90" height="8" rx="4" fill="#f4f0ff" opacity="0.6"/>
+  <rect x="612" y="376" width="55" height="6" rx="3" fill="#a89ec4" opacity="0.3"/>
+  <rect x="564" y="412" width="172" height="32" rx="16" fill="url(#line)" opacity="0.85"/>
+</svg>

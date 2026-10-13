@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0d0a14"/>
+  <rect x="0" y="0" width="800" height="500" fill="url(#bg)" opacity="0.9"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="50%" stop-color="#0d0a14"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <!-- Sidebar -->
+  <rect x="24" y="24" width="160" height="452" rx="12" fill="rgba(20,10,35,0.8)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="44" y="48" width="80" height="10" rx="5" fill="url(#accent)" opacity="0.9"/>
+  <rect x="44" y="80" width="120" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="44" y="120" width="100" height="8" rx="4" fill="#c4b5fd" opacity="0.6"/>
+  <rect x="44" y="148" width="90" height="8" rx="4" fill="#a89ec4" opacity="0.3"/>
+  <rect x="44" y="176" width="110" height="8" rx="4" fill="#a89ec4" opacity="0.3"/>
+  <!-- Main panel -->
+  <rect x="208" y="24" width="568" height="280" rx="12" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <text x="232" y="58" fill="#c4b5fd" font-family="monospace" font-size="11" letter-spacing="2">ANALYTICS DASHBOARD</text>
+  <rect x="232" y="76" width="120" height="48" rx="8" fill="rgba(124,58,237,0.2)" stroke="rgba(168,85,247,0.3)"/>
+  <rect x="368" y="76" width="120" height="48" rx="8" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.2)"/>
+  <rect x="504" y="76" width="120" height="48" rx="8" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.2)"/>
+  <rect x="640" y="76" width="112" height="48" rx="8" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.2)"/>
+  <!-- Chart bars -->
+  <rect x="252" y="200" width="24" height="60" rx="4" fill="#7c3aed" opacity="0.7"/>
+  <rect x="292" y="170" width="24" height="90" rx="4" fill="#a855f7" opacity="0.8"/>
+  <rect x="332" y="185" width="24" height="75" rx="4" fill="#7c3aed" opacity="0.6"/>
+  <rect x="372" y="150" width="24" height="110" rx="4" fill="#c4b5fd" opacity="0.9"/>
+  <rect x="412" y="165" width="24" height="95" rx="4" fill="#a855f7" opacity="0.7"/>
+  <rect x="452" y="140" width="24" height="120" rx="4" fill="#7c3aed"/>
+  <rect x="492" y="155" width="24" height="105" rx="4" fill="#a855f7" opacity="0.75"/>
+  <!-- Chat panel -->
+  <rect x="208" y="320" width="568" height="156" rx="12" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <text x="232" y="350" fill="#c4b5fd" font-family="monospace" font-size="11" letter-spacing="2">AI SUPPORT WORKFLOW</text>
+  <rect x="232" y="368" width="320" height="36" rx="18" fill="rgba(124,58,237,0.15)" stroke="rgba(168,85,247,0.25)"/>
+  <rect x="248" y="380" width="180" height="8" rx="4" fill="#a89ec4" opacity="0.5"/>
+  <rect x="568" y="372" width="80" height="28" rx="14" fill="url(#accent)"/>
+  <circle cx="720" cy="384" r="16" fill="#6b21a8" stroke="#c4b5fd" stroke-width="2"/>
+</svg>

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <!-- Dark Editorial Backdrop -->
+  <rect width="800" height="500" fill="#08080c"/>
+  <rect width="800" height="500" fill="url(#noise-grad)" opacity="0.95"/>
+
+  <defs>
+    <linearGradient id="noise-grad" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#101018"/>
+      <stop offset="50%" stop-color="#08080c"/>
+      <stop offset="100%" stop-color="#040406"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="gold-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <pattern id="fine-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Architectural Background Grid -->
+  <rect width="800" height="500" fill="url(#fine-grid)"/>
+
+  <!-- Top Metadata Bar -->
+  <rect x="32" y="28" width="736" height="42" rx="4" fill="rgba(20,20,30,0.6)" stroke="rgba(255,255,255,0.08)"/>
+  <circle cx="56" cy="49" r="4" fill="#00f2fe"/>
+  <text x="72" y="53" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="2">FANTASY IKOYI</text>
+  <text x="210" y="53" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="10" letter-spacing="1.5">// SPATIAL COMMERCE &amp; AUCTION ENGINE</text>
+  
+  <rect x="620" y="38" width="132" height="22" rx="11" fill="rgba(0,242,254,0.12)" stroke="rgba(0,242,254,0.3)"/>
+  <text x="686" y="52" text-anchor="middle" fill="#00f2fe" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">LIVE PLATFORM</text>
+
+  <!-- Left: Real-time Auction Lot Plate -->
+  <rect x="32" y="86" width="380" height="382" rx="8" fill="rgba(15,15,22,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  
+  <!-- Artwork Wireframe / Artifact Frame -->
+  <rect x="52" y="106" width="340" height="210" rx="4" fill="#0c0c14" stroke="rgba(255,255,255,0.05)"/>
+  
+  <!-- 3D Geometric Cultural Artifact Representation -->
+  <g transform="translate(222, 211)">
+    <!-- Polyhedral Artifact wireframe -->
+    <polygon points="0,-75 60,-25 60,45 0,75 -60,45 -60,-25" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+    <polygon points="0,-75 0,75" stroke="rgba(0,242,254,0.5)" stroke-width="1.2"/>
+    <polygon points="-60,-25 60,45" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <polygon points="60,-25 -60,45" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <polygon points="0,-75 40,0 0,75 -40,0" fill="rgba(0,242,254,0.05)" stroke="#00f2fe" stroke-width="1.4"/>
+    <circle cx="0" cy="0" r="16" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="#00f2fe"/>
+  </g>
+
+  <!-- Artifact Label -->
+  <rect x="64" y="118" width="84" height="20" rx="2" fill="rgba(0,0,0,0.7)" stroke="rgba(255,255,255,0.1)"/>
+  <text x="106" y="132" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="9" letter-spacing="1">LOT 04 // 3D</text>
+
+  <!-- Auction Telemetry Stats -->
+  <text x="52" y="342" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">Contemporary African Art Auction</text>
+  <text x="52" y="360" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="10">CURATED WORKS · SSE STREAMING BID PROTOCOL</text>
+
+  <rect x="52" y="380" width="160" height="68" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)"/>
+  <text x="66" y="402" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9">CURRENT BID</text>
+  <text x="66" y="432" fill="#00f2fe" font-family="monospace" font-size="20" font-weight="bold">$18,500</text>
+
+  <rect x="232" y="380" width="160" height="68" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)"/>
+  <text x="246" y="402" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9">BIDDER STATUS</text>
+  <text x="246" y="432" fill="#10b981" font-family="monospace" font-size="15" font-weight="bold">● YOU LEAD</text>
+
+  <!-- Right: Vector Merch Workshop & Web Audio Engine Cards -->
+  <!-- Top Right: Bespoke Studio -->
+  <rect x="428" y="86" width="340" height="184" rx="8" fill="rgba(15,15,22,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="448" y="112" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9" letter-spacing="1">STUDIO WORKSHOP</text>
+  <text x="448" y="132" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">&quot;MAKE SOMETHING&quot; Garment Studio</text>
+  <text x="448" y="148" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="10">SVG Clipping Matrices · 350 GSM Blanks</text>
+
+  <!-- T-shirt vector outline representation -->
+  <g transform="translate(640, 145) scale(0.65)">
+    <path d="M-30,-20 L-60,-5 L-45,25 L-25,15 L-25,60 L25,60 L25,15 L45,25 L60,-5 L30,-20 C20,-5 -20,-5 -30,-20 Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <rect x="-14" y="0" width="28" height="28" fill="rgba(0,242,254,0.15)" stroke="#00f2fe" stroke-dasharray="2 2" stroke-width="1.2"/>
+  </g>
+
+  <rect x="448" y="196" width="140" height="28" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+  <text x="518" y="214" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">350 GSM LUXURY</text>
+
+  <!-- Bottom Right: Procedural Web Audio Synth Engine -->
+  <rect x="428" y="284" width="340" height="184" rx="8" fill="rgba(15,15,22,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="448" y="310" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9" letter-spacing="1">CREATIVE TECH // ZERO-ASSET</text>
+  <text x="448" y="330" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">Procedural Web Audio Synth</text>
+  <text x="448" y="346" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="10">Native AudioContext · 8-Bit Osc Envelopes</text>
+
+  <!-- Synthesizer Waveform Visualizer -->
+  <g transform="translate(448, 385)">
+    <!-- Sound Waveform -->
+    <path d="M0,20 Q15,-15 30,20 T60,20 T90,20 T120,20 T150,20 T180,20 T210,20 T240,20 T270,20 T300,20" fill="none" stroke="rgba(0,242,254,0.3)" stroke-width="1"/>
+    <path d="M0,20 Q15,0 30,20 T60,20 T90,-5 T120,35 T150,5 T180,20 T210,10 T240,30 T270,15 T300,20" fill="none" stroke="#00f2fe" stroke-width="1.8"/>
+    <!-- Equalizer bars -->
+    <rect x="230" y="8" width="4" height="24" fill="#00f2fe" opacity="0.9"/>
+    <rect x="238" y="0" width="4" height="32" fill="#00f2fe" opacity="0.8"/>
+    <rect x="246" y="14" width="4" height="18" fill="#00f2fe" opacity="0.7"/>
+    <rect x="254" y="4" width="4" height="28" fill="#00f2fe" opacity="0.85"/>
+    <rect x="262" y="18" width="4" height="14" fill="#00f2fe" opacity="0.6"/>
+  </g>
+  <text x="448" y="442" fill="rgba(255,255,255,0.35)" font-family="monospace" font-size="9">15+ PROCEDURAL UI SFX · 0KB ASSET OVERHEAD</text>
+</svg>

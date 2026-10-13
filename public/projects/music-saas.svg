@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0d0a14"/>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#120a1f"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6b21a8"/>
+    </linearGradient>
+  </defs>
+  <text x="40" y="52" fill="#c4b5fd" font-family="monospace" font-size="11" letter-spacing="2">MUSIC DISTRIBUTION</text>
+  <rect x="40" y="72" width="200" height="12" rx="6" fill="#f4f0ff" opacity="0.9"/>
+  <rect x="40" y="96" width="280" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <!-- Upload zone -->
+  <rect x="40" y="140" width="340" height="200" rx="16" fill="rgba(20,10,35,0.7)" stroke="rgba(168,85,247,0.3)" stroke-dasharray="8 6"/>
+  <circle cx="210" cy="210" r="32" fill="rgba(124,58,237,0.25)" stroke="#a855f7"/>
+  <path d="M198 218 L210 200 L222 218 M200 218 L220 218" stroke="#c4b5fd" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <rect x="130" y="258" width="160" height="10" rx="5" fill="#a89ec4" opacity="0.5"/>
+  <rect x="155" y="278" width="110" height="8" rx="4" fill="#a89ec4" opacity="0.3"/>
+  <!-- Track list -->
+  <rect x="408" y="140" width="352" height="200" rx="16" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <rect x="432" y="168" width="48" height="48" rx="8" fill="url(#wave)" opacity="0.8"/>
+  <rect x="496" y="176" width="140" height="10" rx="5" fill="#f4f0ff" opacity="0.7"/>
+  <rect x="496" y="196" width="100" height="8" rx="4" fill="#a89ec4" opacity="0.4"/>
+  <rect x="432" y="232" width="48" height="48" rx="8" fill="rgba(124,58,237,0.4)"/>
+  <rect x="496" y="240" width="120" height="10" rx="5" fill="#f4f0ff" opacity="0.5"/>
+  <rect x="496" y="260" width="90" height="8" rx="4" fill="#a89ec4" opacity="0.3"/>
+  <!-- Waveform -->
+  <rect x="40" y="368" width="720" height="100" rx="16" fill="rgba(20,10,35,0.65)" stroke="rgba(168,85,247,0.2)"/>
+  <rect x="60" y="410" width="8" height="30" rx="2" fill="#7c3aed" opacity="0.6"/>
+  <rect x="76" y="400" width="8" height="40" rx="2" fill="#a855f7"/>
+  <rect x="92" y="405" width="8" height="35" rx="2" fill="#7c3aed" opacity="0.7"/>
+  <rect x="108" y="395" width="8" height="45" rx="2" fill="#c4b5fd"/>
+  <rect x="124" y="402" width="8" height="38" rx="2" fill="#a855f7" opacity="0.8"/>
+  <rect x="140" y="390" width="8" height="50" rx="2" fill="#7c3aed"/>
+  <rect x="156" y="398" width="8" height="42" rx="2" fill="#a855f7" opacity="0.7"/>
+  <rect x="172" y="405" width="8" height="35" rx="2" fill="#7c3aed" opacity="0.6"/>
+  <rect x="600" y="400" width="140" height="28" rx="14" fill="url(#wave)"/>
+</svg>

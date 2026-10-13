@@ -1,26 +1,290 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── SYSTEM DESIGN TOKENS (Cognito Systems + Oyudo Reference) ─── */
+:root,
+[data-theme="dark"] {
+  --system-paper: #07070a;
+  --system-paper-2: #0d0d12;
+  --system-paper-3: #121218;
+  --system-paper-card: rgba(18, 18, 25, 0.65);
+  --system-ink: #f4f4f7;
+  --system-ink-70: #a4a4b5;
+  --system-ink-45: #6d6d7e;
+  --system-ink-25: #3e3e4d;
+  --system-rule: rgba(255, 255, 255, 0.08);
+  --system-rule-soft: rgba(255, 255, 255, 0.04);
+  --system-rule-bright: rgba(255, 255, 255, 0.22);
+  --signal-cyan: #00f2fe;
+  --signal-violet: #a855f7;
+  --signal-emerald: #10b981;
+  --signal-amber: #f59e0b;
+  --nav-bg: rgba(7, 7, 10, 0.75);
+  --glow-ambient: rgba(168, 85, 247, 0.12);
+  --selection-bg: rgba(0, 242, 254, 0.25);
+}
+
+[data-theme="light"] {
+  --system-paper: #f4f3ef;
+  --system-paper-2: #ebeae4;
+  --system-paper-3: #e0ded6;
+  --system-paper-card: rgba(255, 255, 255, 0.85);
+  --system-ink: #0d0d12;
+  --system-ink-70: #4a4a55;
+  --system-ink-45: #7c7c8c;
+  --system-ink-25: #b0b0bf;
+  --system-rule: rgba(13, 13, 18, 0.09);
+  --system-rule-soft: rgba(13, 13, 18, 0.04);
+  --system-rule-bright: rgba(13, 13, 18, 0.25);
+  --signal-cyan: #0891b2;
+  --signal-violet: #7c3aed;
+  --signal-emerald: #059669;
+  --signal-amber: #d97706;
+  --nav-bg: rgba(244, 243, 239, 0.82);
+  --glow-ambient: rgba(124, 58, 237, 0.08);
+  --selection-bg: rgba(124, 58, 237, 0.2);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--system-paper);
+  --color-paper-elevated: var(--system-paper-2);
+  --color-paper-card: var(--system-paper-card);
+  --color-ink: var(--system-ink);
+  --color-ink-muted: var(--system-ink-70);
+  --color-ink-dim: var(--system-ink-45);
+  --color-ink-faint: var(--system-ink-25);
+  --color-rule: var(--system-rule);
+  --color-rule-bright: var(--system-rule-bright);
+  --color-cyan: var(--signal-cyan);
+  --color-violet: var(--signal-violet);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Global Base ─── */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--system-paper);
+  color: var(--system-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--system-paper);
+  color: var(--system-ink);
+  font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--system-ink);
+}
+
+/* ─── Architectural Grid & Canvas ─── */
+.sys-grid-backdrop {
+  background-image: 
+    linear-gradient(var(--system-rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--system-rule-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center center;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 80%);
+}
+
+.sys-fine-grid {
+  background-image: 
+    linear-gradient(var(--system-rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--system-rule-soft) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── Technical Leader Lines & Diagrams ─── */
+.sys-leader-line {
+  stroke-dasharray: 4 4;
+  animation: leaderDash 20s linear infinite;
+}
+
+@keyframes leaderDash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* ─── Typography & Utility ─── */
+.sys-display {
+  font-family: var(--font-space-grotesk), sans-serif;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.sys-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+  letter-spacing: -0.01em;
+}
+
+.sys-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+/* ─── Buttons & Micro-Interactions (Cognito-Style) ─── */
+.sys-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--system-ink);
+  color: var(--system-paper);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--system-ink);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sys-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.sys-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.75rem;
+  background: transparent;
+  color: var(--system-ink);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--system-rule);
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sys-btn-secondary:hover {
+  border-color: var(--system-rule-bright);
+  background: var(--system-paper-card);
+  transform: translateY(-2px);
+}
+
+/* Iconic rotating cross (+) on hover */
+.sys-cross-icon {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.group:hover .sys-cross-icon,
+button:hover .sys-cross-icon,
+a:hover .sys-cross-icon {
+  transform: rotate(90deg);
+}
+
+/* Diagonal arrow slide */
+.sys-arrow-icon {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.group:hover .sys-arrow-icon,
+a:hover .sys-arrow-icon {
+  transform: translate(3px, -3px);
+}
+
+/* ─── Technical Dossier Card ─── */
+.sys-card {
+  background: var(--system-paper-card);
+  border: 1px solid var(--system-rule);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.sys-card:hover {
+  border-color: var(--system-rule-bright);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+/* Technical Corner Marks */
+.sys-corners::before,
+.sys-corners::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-color: var(--system-ink-45);
+  pointer-events: none;
+}
+
+.sys-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+.sys-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+/* ─── Scroll Driven Reveal Animation ─── */
+.sys-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sys-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--system-paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--system-ink-25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--system-ink-45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
