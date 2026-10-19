@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Joseph Ayeni - CV</title>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 0.4in 0.45in 0.4in 0.45in;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.4;
+      font-size: 8.8pt;
+    }
+
+    a {
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 21pt;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .headline-role {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #0284c7;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 8.5pt;
+      color: #475569;
+    }
+
+    .contact-row .sep {
+      color: #94a3b8;
+      font-weight: bold;
+    }
+
+    .contact-row a {
+      color: #334155;
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 8.8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 3px;
+      margin-top: 10px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 10px;
+      background: #0284c7;
+      border-radius: 1px;
+    }
+
+    /* Skills Table/Block */
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 9px;
+      font-size: 8.3pt;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      line-height: 1.35;
+    }
+
+    .skill-label {
+      font-weight: 700;
+      color: #1e293b;
+      width: 148px;
+      flex-shrink: 0;
+    }
+
+    .skill-val {
+      color: #334155;
+    }
+
+    /* Case Studies */
+    .case-card {
+      margin-bottom: 9px;
+      page-break-inside: avoid;
+    }
+
+    .case-headline {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .case-title-left {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .project-name {
+      font-size: 10.2pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .role-badge {
+      font-size: 8.8pt;
+      font-weight: 600;
+      color: #0284c7;
+    }
+
+    .case-meta-right {
+      font-size: 8.2pt;
+      color: #64748b;
+    }
+
+    .case-subrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+      font-size: 7.8pt;
+      gap: 8px;
+    }
+
+    .case-desc {
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .case-tech-stack {
+      font-family: "SF Mono", Menlo, Consolas, Monaco, monospace;
+      font-size: 7.2pt;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    ul.case-bullets {
+      list-style-type: disc;
+      padding-left: 15px;
+    }
+
+    ul.case-bullets li {
+      font-size: 8.4pt;
+      color: #334155;
+      margin-bottom: 2px;
+      line-height: 1.36;
+    }
+
+    ul.case-bullets li strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Identity Header -->
+  <header>
+    <div class="header-top">
+      <h1>JOSEPH AYENI</h1>
+      <div class="headline-role">Senior Full-Stack Software Engineer &bull; AI & Scalable Systems</div>
+    </div>
+    <div class="contact-row">
+      <span><strong>Phone:</strong> 08144503637</span>
+      <span class="sep">&bull;</span>
+      <span><strong>Email:</strong> <a href="mailto:manlikejoee@gmail.com">manlikejoee@gmail.com</a></span>
+      <span class="sep">&bull;</span>
+      <span><strong>GitHub:</strong> <a href="https://github.com/sirius-cma201" target="_blank">github.com/sirius-cma201</a></span>
+      <span class="sep">&bull;</span>
+      <span><strong>Portfolio:</strong> <a href="https://mlj-nine.vercel.app/" target="_blank">mlj-nine.vercel.app</a></span>
+    </div>
+  </header>
+
+  <!-- Core Technical Capabilities -->
+  <div class="section-title">Core Technical Capabilities</div>
+  <div class="skills-container">
+    <div class="skill-row">
+      <span class="skill-label">Languages & Frameworks:</span>
+      <span class="skill-val">TypeScript, JavaScript, Python, Node.js, NestJS, Express, React (18/19), Next.js, Vite, Tailwind CSS</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Architecture & Data:</span>
+      <span class="skill-val">PostgreSQL, MongoDB / Mongoose, RESTful APIs, Server-Sent Events (SSE), Web Audio API, WebXR / Three.js</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">AI, Cloud & Infrastructure:</span>
+      <span class="skill-val">OpenAI Integrations, Vector Store Workflows, AWS (EC2, S3, SES), PM2, Stripe & PayPal, Docker, CI/CD</span>
+    </div>
+  </div>
+
+  <!-- Selected Production Systems -->
+  <div class="section-title">Selected Production Systems & Case Studies</div>
+
+  <!-- 1. Martha AI -->
+  <div class="case-card">
+    <div class="case-headline">
+      <div class="case-title-left">
+        <span class="project-name">Martha AI</span>
+        <span class="role-badge">&mdash; Full-Stack Software Engineer</span>
+      </div>
+      <div class="case-meta-right">Production SaaS</div>
+    </div>
+    <div class="case-subrow">
+      <span class="case-desc">AI Customer Operations & Autonomous Communication Platform</span>
+      <span class="case-tech-stack">React &bull; Next.js &bull; NestJS &bull; PostgreSQL &bull; OpenAI &bull; Vector Stores</span>
+    </div>
+    <ul class="case-bullets">
+      <li><strong>AI Onboarding & Workflows:</strong> Engineered full-stack AI-assisted business onboarding with automated description generation, schema data modeling, and vector training pipelines.</li>
+      <li><strong>Security & Reliability:</strong> Implemented role-based access control (RBAC), team hierarchies, centralized multi-channel communication tools, and real-time analytics; built session recovery workflows and automated test coverage across frontend and backend services.</li>
+    </ul>
+  </div>
+
+  <!-- 2. Fantasy Ikoyi -->
+  <div class="case-card">
+    <div class="case-headline">
+      <div class="case-title-left">
+        <span class="project-name">Fantasy Ikoyi</span>
+        <span class="role-badge">&mdash; Lead Full-Stack / Creative Tech Engineer</span>
+      </div>
+      <div class="case-meta-right"><a href="https://fantasyikoyi.com/" target="_blank">fantasyikoyi.com ↗</a></div>
+    </div>
+    <div class="case-subrow">
+      <span class="case-desc">Spatial Commerce, Real-Time Auctions & Cultural Brand Platform</span>
+      <span class="case-tech-stack">React 19 &bull; TypeScript &bull; Node.js &bull; SSE &bull; Web Audio &bull; WebXR &bull; AWS EC2</span>
+    </div>
+    <ul class="case-bullets">
+      <li><strong>End-to-End Delivery:</strong> Assumed 100% architectural and operational ownership at 70% pre-launch; stabilized codebase and shipped core capabilities to production with 100% post-launch uptime on AWS EC2/PM2.</li>
+      <li><strong>Real-Time & Creative Tech:</strong> Built real-time art auctions with Server-Sent Events (SSE) and passwordless magic-link JWT auth; engineered an interactive SVG garment customizer with dynamic multi-currency pricing (NGN/USD/EUR/GBP), a zero-asset procedural Web Audio synth, and Google &lt;model-viewer&gt; WebXR 3D projection.</li>
+    </ul>
+  </div>
+
+  <!-- 3. Black Pride -->
+  <div class="case-card">
+    <div class="case-headline">
+      <div class="case-title-left">
+        <span class="project-name">Black Pride & Black Pride Canada</span>
+        <span class="role-badge">&mdash; Lead Full-Stack Engineer</span>
+      </div>
+      <div class="case-meta-right"><a href="https://www.blackprideyyc.org/" target="_blank">blackprideyyc.org ↗</a> &bull; <a href="https://blackpride.ca/" target="_blank">blackpride.ca ↗</a></div>
+    </div>
+    <div class="case-subrow">
+      <span class="case-desc">Community Digital Ecosystem, LMS Engine & Mental Wellness Hub</span>
+      <span class="case-tech-stack">React 18 &bull; TypeScript &bull; Node.js &bull; MongoDB &bull; AWS S3 &bull; Zustand</span>
+    </div>
+    <ul class="case-bullets">
+      <li><strong>Ecosystem Architecture:</strong> Architected two digital platforms featuring a WCAG 2.1 AA Members Portal, an LMS Courses engine with relational Mongoose progress tracking, and the trauma-informed "Healing Hub" with instant confidential crisis escalation modals.</li>
+      <li><strong>Engineering Standards & Scale:</strong> Served as primary code gatekeeper reviewing 100% of frontend PRs, scaled the Education Hub and historical Queer Archive using AWS S3 optimization, and maintained 99.9% uptime across national advocacy traffic surges.</li>
+    </ul>
+  </div>
+
+  <!-- 4. WeAreGriot -->
+  <div class="case-card">
+    <div class="case-headline">
+      <div class="case-title-left">
+        <span class="project-name">WeAreGriot</span>
+        <span class="role-badge">&mdash; Full-Stack Engineer</span>
+      </div>
+      <div class="case-meta-right"><a href="https://wearegriot.com/" target="_blank">wearegriot.com ↗</a></div>
+    </div>
+    <div class="case-subrow">
+      <span class="case-desc">High-Concurrency Ticketing, Merch E-Commerce & Operations Platform</span>
+      <span class="case-tech-stack">React 18 &bull; TypeScript &bull; Express &bull; MongoDB &bull; Sanity Studio v3 &bull; Stripe</span>
+    </div>
+    <ul class="case-bullets">
+      <li><strong>High-Concurrency Engine:</strong> Engineered event ticketing with temporary reservation holds and webhook-driven inventory rollbacks to eliminate overselling during flash ticket releases.</li>
+      <li><strong>Operational Tooling:</strong> Built door check-in redemption APIs with anti-double-scan validation and custom Sanity Studio v3 React operations tables with live CSV/PDF attendee roster exports.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
