@@ -95,6 +95,9 @@ export default function WorkPage() {
                   <div className="text-[11px] text-[var(--system-ink-45)] uppercase tracking-wider mt-1">
                     Handled Volume
                   </div>
+                  <div className="text-[10px] text-cyan-400 font-mono mt-0.5">
+                    with the help of Martha AI support agent
+                  </div>
                 </div>
               </div>
             </div>

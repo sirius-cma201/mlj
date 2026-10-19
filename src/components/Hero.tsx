@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/config";
@@ -12,13 +11,7 @@ interface HeroProps {
 }
 
 export function Hero({ onOpenTerminal }: HeroProps) {
-  const [pulseCount, setPulseCount] = useState(0);
   const titleText = useTextScramble("I engineer production intelligence and scalable systems.");
-
-  const handleCoreInteract = () => {
-    sound.playSubDrone();
-    setPulseCount((p) => p + 1);
-  };
 
   return (
     <section
@@ -163,47 +156,7 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 relative flex flex-col gap-4 justify-center"
         >
-          {/* HUD Card 1: Core Telemetry Matrix */}
-          <div
-            onClick={handleCoreInteract}
-            className="group cursor-pointer rounded-2xl border border-[var(--system-rule)] bg-[var(--system-paper-card)]/80 backdrop-blur-xl p-6 transition-all hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] shadow-xl"
-          >
-            <div className="flex items-center justify-between border-b border-[var(--system-rule)] pb-3 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-cyan-400 animate-ping" />
-                <span className="font-mono text-xs font-bold text-[var(--system-ink)]">
-                  ARC_REACTOR // TELEMETRY
-                </span>
-              </div>
-              <span className="font-mono text-[10px] text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-400/30">
-                OUTPUT: 3.0 GJ/s
-              </span>
-            </div>
-
-            <div className="space-y-2.5 font-mono text-xs">
-              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
-                <span>CORE GEOMETRY:</span>
-                <span className="text-[var(--system-ink)] font-semibold">ICOSA_LATTICE // PALLADIUM</span>
-              </div>
-              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
-                <span>J.A.R.V.I.S. LINK:</span>
-                <span className="text-emerald-400">ACTIVE &amp; NOMINAL</span>
-              </div>
-              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
-                <span>INTERACTION IMPULSES:</span>
-                <span className="text-cyan-400 font-bold">{pulseCount} CYCLES</span>
-              </div>
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-[var(--system-rule)] flex items-center justify-between font-mono text-[10px] text-[var(--system-ink-45)]">
-              <span>DRAG BACKGROUND TO ORBIT</span>
-              <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">
-                TAP TO PULSE →
-              </span>
-            </div>
-          </div>
-
-          {/* HUD Card 2: Production Dossier Gateway */}
+          {/* HUD Card: Production Dossier Gateway */}
           <Link
             href="/work"
             className="group rounded-2xl border border-[var(--system-rule)] bg-[var(--system-paper-card)]/80 backdrop-blur-xl p-6 transition-all hover:border-cyan-400 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] shadow-xl block"

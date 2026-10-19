@@ -18,8 +18,8 @@ const metrics = [
   {
     num: "$25M+",
     label: "Handled Volume",
-    detail: "Crypto & payment settlement architectures designed for non-stop uptime.",
-    tag: "DISTRIBUTED LEDGER",
+    detail: "Forward-deployed GTM engineering: operating live production software, triaging critical bugs on the fly, and deploying immediate hotfixes across $25M+ in active customer workflows.",
+    tag: "GTM / RAPID TRIAGE",
   },
   {
     num: "100%",
