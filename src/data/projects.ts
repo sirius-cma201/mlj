@@ -93,6 +93,7 @@ export const projects: Project[] = [
     links: {
       github: siteConfig.projects.marthaAi.github,
       demo: siteConfig.projects.marthaAi.demo,
+      live: siteConfig.projects.marthaAi.live,
     },
   },
   {
@@ -119,7 +120,7 @@ export const projects: Project[] = [
       },
     ],
     problem:
-      "Handed over in pre-launch status at ~70% completion. The foundation required stabilization, critical business capabilities (live art auctions, bespoke vector merch studio, procedural audio engine) were missing, and the platform needed to launch rapidly without compromising its high-contrast luxury editorial aesthetic.",
+      "Handed over in pre-launch status at ~60% completion. The foundation required stabilization, critical business capabilities (live art auctions, bespoke vector merch studio, procedural audio engine) were missing, and the platform needed to launch rapidly without compromising its high-contrast luxury editorial aesthetic.",
     solution:
       "Stepped in as sole post-handover engineer to eliminate architectural debt and lead the platform to production. Engineered a zero-asset procedural 8-bit Web Audio API synth, an interactive SVG garment customizer with real-time multi-currency pricing, an SSE-driven live auction bidding room with passwordless JWT magic links, and Google <model-viewer> WebXR 3D spatial artifact walkthroughs. Integrated Zap Pay and Stripe multi-currency checkout on AWS EC2/PM2 infrastructure with 100% operational uptime.",
     tech: [

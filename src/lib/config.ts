@@ -17,6 +17,9 @@ export const siteConfig = {
       demo:
         process.env.NEXT_PUBLIC_MARTHA_AI_DEMO ??
         "https://www.youtube.com/watch?v=a5WJV5Dghpc",
+      live:
+        process.env.NEXT_PUBLIC_MARTHA_AI_URL ??
+        "https://askmartha.ai",
     },
     blackPride: {
       github:

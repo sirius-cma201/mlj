@@ -13,14 +13,14 @@
 
 ### PRODUCTION SYSTEMS & CASE STUDIES
 
-#### **Martha AI** — *Full-Stack Software Engineer*
+#### **Martha AI** ([askmartha.ai](https://askmartha.ai/)) — *Full-Stack Software Engineer*
 *AI Customer Operations & Autonomous Communication Platform* | `React` · `Next.js` · `NestJS` · `PostgreSQL` · `OpenAI` · `Vector Stores`
 * **AI Onboarding & Workflows:** Built full-stack AI-assisted business onboarding with OpenAI-driven automated business description generation, schema data modeling, and vector training pipelines.
 * **Security & Reliability:** Engineered role-based access control (RBAC), team invitation hierarchies, centralized multi-channel communication tools, and real-time analytics dashboards; introduced session recovery workflows and automated test coverage across frontend and backend services.
 
 #### **Fantasy Ikoyi** ([fantasyikoyi.com](https://fantasyikoyi.com/)) — *Lead Full-Stack / Creative Tech Engineer*
 *Spatial Commerce, Real-Time Auctions & Cultural Brand Platform* | `React 19` · `TypeScript` · `Node.js` · `SSE` · `Web Audio API` · `WebXR` · `AWS EC2`
-* **End-to-End Delivery:** Assumed 100% architectural and operational ownership at 70% pre-launch; stabilized codebase and shipped core capabilities to production with 100% post-launch uptime on AWS EC2/PM2.
+* **End-to-End Delivery:** Assumed 100% architectural and operational ownership at 60% pre-launch; stabilized codebase and shipped core capabilities to production with 100% post-launch uptime on AWS EC2/PM2.
 * **Real-Time & Creative Tech:** Built real-time art auctions with Server-Sent Events (SSE) and passwordless magic-link JWT auth; engineered an interactive SVG garment customizer with dynamic multi-currency pricing (NGN/USD/EUR/GBP), a zero-asset procedural Web Audio synthesizer, and Google `<model-viewer>` WebXR 3D projection.
 
 #### **Black Pride & Black Pride Canada** ([blackprideyyc.org](https://www.blackprideyyc.org/) · [blackpride.ca](https://blackpride.ca/)) — *Lead Full-Stack Engineer*

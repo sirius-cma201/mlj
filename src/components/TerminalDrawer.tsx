@@ -85,7 +85,7 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
         res = (
           <div className="space-y-1 text-xs text-white/80">
             <p className="text-cyan-400 font-bold">FANTASY IKOYI // Spatial Commerce, Live Auctions &amp; Cultural Club</p>
-            <p>• Handed over at ~70% completion; stabilized &amp; shipped to production as sole engineer.</p>
+            <p>• Handed over at ~60% completion; stabilized &amp; shipped to production as sole engineer.</p>
             <p>• Zero-asset procedural Web Audio API SFX engine (15+ mathematical waveforms).</p>
             <p>• In-browser vector garment customizer (&quot;MAKE SOMETHING&quot;) with SVG clipping matrices.</p>
             <p>• Real-time SSE live art auction platform with passwordless magic-link JWT auth.</p>
@@ -140,7 +140,8 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
             <p>• 91.7% autonomous resolution measured in production over 3,000+ support tickets.</p>
             <p>• Vector store workflows, NestJS backend, OpenAI LLM integration &amp; role-based RBAC.</p>
             <p>• Zero human intervention required for common customer flows.</p>
-            <div className="pt-1">
+            <div className="pt-1 flex flex-wrap gap-3">
+              <a href="https://askmartha.ai" target="_blank" rel="noreferrer" className="text-cyan-300 underline font-mono">Visit askmartha.ai ↗</a>
               <a href="https://www.youtube.com/watch?v=a5WJV5Dghpc" target="_blank" rel="noreferrer" className="text-cyan-300 underline font-mono">Watch Demo Video (YouTube) ↗</a>
             </div>
           </div>
