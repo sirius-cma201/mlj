@@ -6,8 +6,8 @@ export const siteConfig = {
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
     "Software Engineer focused on scalable backend systems, AI-powered products, and production-ready SaaS.",
-  github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com",
-  email: process.env.NEXT_PUBLIC_EMAIL ?? "hello@example.com",
+  github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/sirius-cma201",
+  email: process.env.NEXT_PUBLIC_EMAIL ?? "manlikejoee@gmail.com",
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "",
   projects: {
     marthaAi: {
@@ -16,12 +16,18 @@ export const siteConfig = {
         "https://github.com/yourusername/martha-ai",
       demo:
         process.env.NEXT_PUBLIC_MARTHA_AI_DEMO ??
-        "https://www.loom.com/share/your-demo-id",
+        "https://www.youtube.com/watch?v=a5WJV5Dghpc",
     },
-    musicSaas: {
+    blackPride: {
       github:
-        process.env.NEXT_PUBLIC_MUSIC_SAAS_GITHUB ??
-        "https://github.com/yourusername/music-distribution-saas",
+        process.env.NEXT_PUBLIC_BLACK_PRIDE_GITHUB ??
+        "",
+      yyc:
+        process.env.NEXT_PUBLIC_BLACK_PRIDE_YYC_URL ??
+        "https://www.blackprideyyc.org/",
+      canada:
+        process.env.NEXT_PUBLIC_BLACK_PRIDE_CANADA_URL ??
+        "https://blackpride.ca",
     },
     cryptoTax: {
       github:
@@ -32,6 +38,11 @@ export const siteConfig = {
       live:
         process.env.NEXT_PUBLIC_FANTASY_IKOYI_URL ??
         "https://fantasyikoyi.com",
+    },
+    weAreGriot: {
+      live:
+        process.env.NEXT_PUBLIC_WEAREGRIOT_URL ??
+        "https://wearegriot.com",
     },
   },
 } as const;

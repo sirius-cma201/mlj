@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "./ThemeToggle";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
@@ -10,15 +12,18 @@ interface NavbarProps {
   onOpenTerminal?: () => void;
 }
 
-const navLinks = [
-  { href: "#hero", label: "01 System" },
-  { href: "#metrics", label: "02 Metrics" },
-  { href: "#work", label: "03 Projects" },
-  { href: "#architecture", label: "04 Architecture" },
-  { href: "#contact", label: "05 Transmission" },
-];
-
 export function Navbar({ onOpenTerminal }: NavbarProps) {
+  const pathname = usePathname();
+  const isWorkPage = pathname === "/work" || pathname === "/projects";
+
+  const navLinks = [
+    { href: isWorkPage ? "/#hero" : "#hero", label: "01 System" },
+    { href: isWorkPage ? "#work" : "/work", label: "02 Projects" },
+    { href: isWorkPage ? "/#metrics" : "#metrics", label: "03 Metrics" },
+    { href: isWorkPage ? "#architecture" : "/work#architecture", label: "04 Architecture" },
+    { href: isWorkPage ? "/#contact" : "#contact", label: "05 Transmission" },
+  ];
+
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,8 +62,8 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-12">
           {/* Logo & Status Indicator */}
           <div className="flex items-center gap-3 sm:gap-4">
-            <a
-              href="#hero"
+            <Link
+              href={isWorkPage ? "/" : "#hero"}
               onMouseEnter={() => sound.playHover()}
               onClick={() => sound.playClick()}
               className="flex items-center gap-2 font-mono text-sm font-semibold tracking-wider text-[var(--system-ink)] group"
@@ -66,22 +71,13 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
               <span className="size-2 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
               <span>{siteConfig.name}</span>
               <span className="text-[var(--system-ink-45)] font-normal text-xs">{"// SYSTEMS"}</span>
-            </a>
-
-            {/* Live Availability Tag */}
-            <div className="hidden sm:flex items-center gap-2 rounded-full border border-[var(--system-rule)] bg-[var(--system-paper-card)] px-2.5 py-0.5 text-[11px] font-mono text-[var(--system-ink-70)]">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              </span>
-              <span>AVAILABLE FOR Q2</span>
-            </div>
+            </Link>
           </div>
 
           {/* Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onMouseEnter={() => sound.playHover()}
@@ -90,7 +86,7 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
               >
                 <span>{link.label}</span>
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-[var(--system-ink)] transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -192,7 +188,7 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
           >
             <nav className="flex flex-col gap-4 font-mono text-sm">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={handleLinkClick}
@@ -200,7 +196,7 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
                 >
                   <span className="font-semibold">{link.label}</span>
                   <span className="text-cyan-400">→</span>
-                </a>
+                </Link>
               ))}
 
               {onOpenTerminal && (
@@ -216,13 +212,13 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
                 </button>
               )}
 
-              <a
-                href="#contact"
+              <Link
+                href={isWorkPage ? "/#contact" : "#contact"}
                 onClick={handleLinkClick}
                 className="mt-1 flex w-full items-center justify-center gap-2 bg-[var(--system-ink)] py-3 font-mono text-xs text-[var(--system-paper)] uppercase tracking-widest"
               >
                 <span>TRANSMISSION DIRECT // CONNECT</span>
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

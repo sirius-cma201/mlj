@@ -2,13 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { sound } from "@/lib/sound";
 
 interface ThreeCanvasProps {
   className?: string;
   onInteract?: () => void;
+  isBackground?: boolean;
 }
 
-export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
+export function ThreeCanvas({
+  className = "",
+  onInteract,
+  isBackground = false,
+}: ThreeCanvasProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isInteracting, setIsInteracting] = useState(false);
@@ -18,13 +24,14 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
     if (!container) return;
 
     // Dimensions
-    const width = container.clientWidth || 600;
-    const height = container.clientHeight || 600;
+    const width = container.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 600);
+    const height = container.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 600);
 
     // Scene, Camera, Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.z = 7;
+    const isMobile = width < 768;
+    camera.position.z = isBackground ? (isMobile ? 8.5 : 6.5) : 7;
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -64,7 +71,41 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
     const pointsMesh = new THREE.Points(coreGeometry, pointsMaterial);
     coreGroup.add(pointsMesh);
 
-    // 2. Orbital Gyroscopic Rings
+    // 2. Arc Reactor Electromagnetic Coils Ring (10 segmented coil nodes)
+    const coilsGroup = new THREE.Group();
+    const coilGeometry = new THREE.BoxGeometry(0.08, 0.22, 0.12);
+    const coilMaterial = new THREE.MeshBasicMaterial({
+      color: 0x00f2fe,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.65,
+    });
+
+    const coilRadius = 1.95;
+    const coilCount = 10;
+    for (let i = 0; i < coilCount; i++) {
+      const angle = (i / coilCount) * Math.PI * 2;
+      const coilMesh = new THREE.Mesh(coilGeometry, coilMaterial);
+      coilMesh.position.set(Math.cos(angle) * coilRadius, Math.sin(angle) * coilRadius, 0);
+      coilMesh.rotation.z = angle + Math.PI / 2;
+      coilsGroup.add(coilMesh);
+    }
+    coreGroup.add(coilsGroup);
+
+    // 2b. Inscribed Triangular Aperture (Mark VI / Mark L Arc Reactor geometry)
+    const triangleGeom = new THREE.RingGeometry(0.7, 0.74, 3);
+    const triangleMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.75,
+      side: THREE.DoubleSide,
+    });
+    const triangleMesh = new THREE.Mesh(triangleGeom, triangleMat);
+    triangleMesh.rotation.z = Math.PI; // Inverted triangle
+    coreGroup.add(triangleMesh);
+
+    // 3. Orbital Gyroscopic Rings
     const ringMaterials = [
       new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.45 }),
       new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.35 }),
@@ -83,7 +124,7 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       rings.push(ringMesh);
     });
 
-    // 3. Floating Data Particles Field
+    // 4. Floating Data Particles Field
     const particleCount = 240;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
@@ -119,10 +160,10 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
     const particleField = new THREE.Points(particleGeo, particleMat);
     coreGroup.add(particleField);
 
-    // 4. Subtle Inner Glow Core
+    // 5. Subtle Inner Palladium Glow Core
     const innerCoreGeom = new THREE.SphereGeometry(0.85, 32, 32);
     const innerCoreMat = new THREE.MeshBasicMaterial({
-      color: 0x180b33,
+      color: 0x083344,
       transparent: true,
       opacity: 0.85,
     });
@@ -159,6 +200,7 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       setIsInteracting(true);
       previousMousePosition = { x: e.clientX, y: e.clientY };
       burstVelocity = 2.4;
+      sound.playRepulsorCharge();
       if (onInteract) onInteract();
     };
 
@@ -174,6 +216,7 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
         setIsInteracting(true);
         previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
         burstVelocity = 2.0;
+        sound.playRepulsorCharge();
         if (onInteract) onInteract();
       }
     };
@@ -202,14 +245,26 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
 
     const handleResize = () => {
       if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
+      const w = container.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 600);
+      const h = container.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 600);
       camera.aspect = w / h;
+      if (isBackground) {
+        camera.position.z = w < 768 ? 8.5 : 6.5;
+      }
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
 
+    const handleWindowMouseMove = (e: MouseEvent) => {
+      if (isDragging) return;
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+
     window.addEventListener("resize", handleResize);
+    if (isBackground) {
+      window.addEventListener("mousemove", handleWindowMouseMove, { passive: true });
+    }
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
@@ -238,6 +293,10 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       coreGroup.rotation.y += targetRotationY * 0.02;
       coreGroup.rotation.x += targetRotationX * 0.02;
 
+      // Arc reactor coils & triangle rotation
+      coilsGroup.rotation.z -= 0.002 * burstVelocity;
+      triangleMesh.rotation.z += 0.003 * burstVelocity;
+
       // Ring rotations
       rings.forEach((ring, idx) => {
         const dir = idx % 2 === 0 ? 1 : -1;
@@ -249,6 +308,10 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       const scale = 1 + Math.sin(elapsedTime * 1.5) * 0.03;
       particleField.scale.set(scale, scale, scale);
 
+      // Palladium core breathing pulsation
+      const corePulse = 1 + Math.sin(elapsedTime * 2.5) * 0.05;
+      innerCore.scale.set(corePulse, corePulse, corePulse);
+
       renderer.render(scene, camera);
     };
 
@@ -257,6 +320,9 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
+      if (isBackground) {
+        window.removeEventListener("mousemove", handleWindowMouseMove);
+      }
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
@@ -268,6 +334,10 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       coreGeometry.dispose();
       wireMaterial.dispose();
       pointsMaterial.dispose();
+      coilGeometry.dispose();
+      coilMaterial.dispose();
+      triangleGeom.dispose();
+      triangleMat.dispose();
       rings.forEach((r) => r.geometry.dispose());
       ringMaterials.forEach((m) => m.dispose());
       particleGeo.dispose();
@@ -280,7 +350,7 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
         container.removeChild(renderer.domElement);
       }
     };
-  }, [onInteract]);
+  }, [onInteract, isBackground]);
 
   return (
     <div
@@ -293,10 +363,26 @@ export function ThreeCanvas({ className = "", onInteract }: ThreeCanvasProps) {
       className={`relative cursor-grab active:cursor-grabbing select-none ${className}`}
       data-cursor-label="DRAG 3D"
     >
-      {/* Interactive HUD overlay badge */}
-      <div className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-2 rounded-full border border-[var(--system-rule)] bg-[var(--system-paper)]/80 px-3 py-1 font-mono text-[10px] tracking-widest text-[var(--system-ink-45)] backdrop-blur-md">
-        <span className="size-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        <span>INTERACTIVE CORE // {isInteracting ? "DRAGGING" : isHovered ? "ACTIVE" : "ONLINE"}</span>
+      {/* Interactive Arc Reactor HUD overlay badge */}
+      <div
+        className={`pointer-events-none ${
+          isBackground
+            ? "fixed bottom-4 left-6 z-20 hidden md:flex"
+            : "absolute bottom-3 left-4 flex"
+        } items-center gap-2 rounded-full border border-[var(--system-rule)] bg-[var(--system-paper)]/85 px-3 py-1 font-mono text-[10px] tracking-widest backdrop-blur-md transition-all shadow-lg`}
+      >
+        <span
+          className={`size-1.5 rounded-full ${
+            isInteracting ? "bg-amber-400 animate-ping" : "bg-cyan-400 animate-pulse"
+          }`}
+        />
+        <span className="text-[var(--system-ink-70)]">
+          {isInteracting
+            ? "REPULSOR OVERCHARGE // CAPACITY 400%"
+            : isHovered
+            ? "J.A.R.V.I.S. // PALLADIUM HARMONICS: NOMINAL"
+            : "ARC CORE MK-LXXXV // OUTPUT: 3.0 GJ/s"}
+        </span>
       </div>
     </div>
   );

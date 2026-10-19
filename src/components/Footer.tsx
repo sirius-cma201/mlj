@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
 
-export function Footer() {
+export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState("");
   const year = new Date().getFullYear();
@@ -40,7 +40,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         {/* Section Chapter Header */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-xs text-cyan-400">05</span>
+          <span className="font-mono text-xs text-cyan-400">{chapterNum}</span>
           <span className="h-px w-6 bg-[var(--system-rule)]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[var(--system-ink-70)]">
             TRANSMISSION // DIRECT CONTACT
@@ -65,6 +65,12 @@ export function Footer() {
               <p className="mt-6 max-w-[44ch] text-base sm:text-lg text-[var(--system-ink-70)] leading-relaxed">
                 Available for AI automation architecture, backend scaling, and production-ready SaaS systems.
               </p>
+              <div className="mt-4 flex items-center gap-2 font-mono text-xs text-cyan-400">
+                <span className="size-1.5 rounded-full bg-cyan-400" />
+                <a href={`mailto:${siteConfig.email}`} className="hover:underline tracking-wider">
+                  {siteConfig.email}
+                </a>
+              </div>
             </div>
 
             {/* Actions: Copy Email + Direct Email */}
@@ -140,7 +146,7 @@ export function Footer() {
             <div className="flex items-center gap-4 text-[var(--system-ink-45)]">
               <span>TIME: {time || "00:00:00 UTC"}</span>
               <span>·</span>
-              <span>TELEMETRY: STABLE</span>
+              <span>TELEMETRY: LEVEL 7 CLEARANCE // STABLE</span>
             </div>
           </div>
         </div>
@@ -151,9 +157,13 @@ export function Footer() {
             © {year} {siteConfig.name}. COGNITIVE ARCHITECTURE ENGINE.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#hero" className="hover:text-[var(--system-ink)] transition-colors">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="hover:text-[var(--system-ink)] transition-colors cursor-pointer"
+            >
               BACK TO TOP ↑
-            </a>
+            </button>
           </div>
         </div>
       </div>

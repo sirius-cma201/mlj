@@ -31,7 +31,7 @@ const principles = [
   },
 ];
 
-export function About() {
+export function About({ chapterNum = "02" }: { chapterNum?: string }) {
   const [activeTab, setActiveTab] = useState("all");
 
   const filteredItems = activeTab === "all"
@@ -46,7 +46,7 @@ export function About() {
       <div className="mx-auto max-w-7xl">
         {/* Section Chapter Header */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-xs text-cyan-400">04</span>
+          <span className="font-mono text-xs text-cyan-400">{chapterNum}</span>
           <span className="h-px w-6 bg-[var(--system-rule)]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[var(--system-ink-70)]">
             CAPABILITIES &amp; CORE PROTOCOLS

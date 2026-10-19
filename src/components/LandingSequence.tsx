@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sound } from "@/lib/sound";
 
@@ -10,15 +10,23 @@ interface LandingSequenceProps {
 
 export function LandingSequence({ onComplete }: LandingSequenceProps) {
   const [visible, setVisible] = useState(() => {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
     try {
       return sessionStorage.getItem("aj_intro_seen") !== "true";
     } catch {
-      return true;
+      return false;
     }
   });
   const [progress, setProgress] = useState(0);
   const [stage, setStage] = useState("INITIALIZING TELEMETRY...");
+
+  const dismiss = useCallback(() => {
+    setVisible(false);
+    try {
+      sessionStorage.setItem("aj_intro_seen", "true");
+    } catch {}
+    if (onComplete) onComplete();
+  }, [onComplete]);
 
   useEffect(() => {
     if (!visible) {
@@ -28,49 +36,58 @@ export function LandingSequence({ onComplete }: LandingSequenceProps) {
 
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setVisible(false);
-            sessionStorage.setItem("aj_intro_seen", "true");
-            if (onComplete) onComplete();
-          }, 350);
+        const next = prev + Math.floor(Math.random() * 9) + 5;
+        if (next >= 100) {
           return 100;
         }
 
-        const next = prev + Math.floor(Math.random() * 8) + 4;
-        if (next > 30 && next <= 65) {
-          setStage("CALIBRATING 3D COGNITIVE CORE...");
-        } else if (next > 65 && next < 95) {
+        if (next > 25 && next <= 55) {
+          setStage("ARC REACTOR HARMONICS: STABLE (3.0 GJ/s)...");
+        } else if (next > 55 && next <= 80) {
+          setStage("J.A.R.V.I.S. INTERFACE // VERONICA PROTOCOL READY...");
+        } else if (next > 80 && next < 95) {
           setStage("LINKING PRODUCTION REPOSITORIES...");
         } else if (next >= 95) {
-          setStage("SYSTEM ONLINE // AJ-KERNEL v2.4");
+          setStage("SYSTEM ONLINE // AJ-KERNEL [STARK_OS]");
         }
-        return Math.min(next, 100);
+        return next;
       });
-    }, 45);
+    }, 40);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" || e.key === "Enter") {
-        setVisible(false);
-        sessionStorage.setItem("aj_intro_seen", "true");
-        if (onComplete) onComplete();
+      if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+        dismiss();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
+    // Guaranteed auto-dismiss fallback after 1.4s
+    const maxTimer = setTimeout(() => {
+      dismiss();
+    }, 1400);
+
     return () => {
       clearInterval(interval);
+      clearTimeout(maxTimer);
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [visible, onComplete]);
+  }, [visible, dismiss, onComplete]);
 
-  const handleSkip = () => {
+  // When progress reaches 100%, trigger dismiss
+  useEffect(() => {
+    if (progress >= 100 && visible) {
+      const timer = setTimeout(() => {
+        dismiss();
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+  }, [progress, visible, dismiss]);
+
+  const handleSkip = (e: React.MouseEvent) => {
+    e.stopPropagation();
     sound.playClick();
-    setVisible(false);
-    sessionStorage.setItem("aj_intro_seen", "true");
-    if (onComplete) onComplete();
+    dismiss();
   };
 
   return (
@@ -119,7 +136,7 @@ export function LandingSequence({ onComplete }: LandingSequenceProps) {
 
             <div className="mt-4 flex items-center justify-between text-[10px] text-[var(--system-ink-45)]">
               <span>MEM_BLOCK: 0x7FFF // OK</span>
-              <span>SHADERS: GLSL_300 // COMPILED</span>
+              <span>ARC_REACTOR: 3.0 GJ/s // STABLE</span>
               <span>NODE: LATENCY 84ms</span>
             </div>
           </div>

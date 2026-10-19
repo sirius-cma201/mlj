@@ -29,16 +29,16 @@ const metrics = [
   },
 ];
 
-export function Metrics() {
+export function Metrics({ chapterNum = "02" }: { chapterNum?: string }) {
   return (
     <section
       id="metrics"
-      className="relative w-full border-t border-[var(--system-rule)] bg-[var(--system-paper)] px-6 py-20 lg:px-12 lg:py-28 overflow-hidden"
+      className="relative w-full border-t border-[var(--system-rule)] bg-[var(--system-paper)]/80 backdrop-blur-xl px-6 py-20 lg:px-12 lg:py-28 overflow-hidden"
     >
       <div className="mx-auto max-w-7xl">
         {/* Section Chapter Header */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-xs text-cyan-400">02</span>
+          <span className="font-mono text-xs text-cyan-400">{chapterNum}</span>
           <span className="h-px w-6 bg-[var(--system-rule)]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[var(--system-ink-70)]">
             MEASURED PRODUCTION OUTCOMES

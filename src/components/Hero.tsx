@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ThreeCanvas } from "./ThreeCanvas";
 import { siteConfig } from "@/lib/config";
 import { sound } from "@/lib/sound";
 import { useTextScramble } from "@/lib/useTextScramble";
@@ -84,25 +84,28 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           </div>
 
           {/* Interactive Action CTAs with Micro-interactions */}
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#work"
+          <div className="mt-10 grid grid-cols-3 gap-2 w-full max-w-lg sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:gap-4">
+            <Link
+              href="/work"
               onMouseEnter={() => sound.playHover()}
               onClick={() => sound.playClick()}
-              className="sys-btn-primary group"
+              className="sys-btn-primary group !px-1.5 !py-2.5 sm:!px-7 sm:!py-3.5 !text-[9.5px] xs:!text-[10px] sm:!text-[0.78rem] !tracking-tight sm:!tracking-widest !gap-1 sm:!gap-3.5 w-full justify-center text-center"
               data-cursor-label="EXPLORE"
             >
-              <span>EXPLORE WORK</span>
+              <span className="truncate">
+                <span className="xs:hidden">EXPLORE</span>
+                <span className="hidden xs:inline">EXPLORE WORK</span>
+              </span>
               <svg
-                width="11"
-                height="11"
+                width="10"
+                height="10"
                 viewBox="0 0 10 10"
                 aria-hidden="true"
-                className="sys-cross-icon shrink-0"
+                className="sys-cross-icon shrink-0 hidden sm:inline-block"
               >
                 <path d="M5 0v10M0 5h10" stroke="currentColor" strokeWidth="1.2" />
               </svg>
-            </a>
+            </Link>
 
             {onOpenTerminal && (
               <button
@@ -112,12 +115,15 @@ export function Hero({ onOpenTerminal }: HeroProps) {
                   sound.playTerminalBeep();
                   onOpenTerminal();
                 }}
-                className="sys-btn-secondary group"
+                className="sys-btn-secondary group !px-1.5 !py-2.5 sm:!px-7 sm:!py-3.5 !text-[9.5px] xs:!text-[10px] sm:!text-[0.78rem] !tracking-tight sm:!tracking-widest !gap-1 sm:!gap-3.5 w-full justify-center text-center"
                 data-cursor-label="TERMINAL"
               >
-                <span className="text-cyan-400">&gt;_</span>
-                <span>OPEN TERMINAL</span>
-                <span className="text-[10px] text-[var(--system-ink-45)] font-mono">[~]</span>
+                <span className="text-cyan-400 shrink-0">&gt;_</span>
+                <span className="truncate">
+                  <span className="xs:hidden">TERMINAL</span>
+                  <span className="hidden xs:inline">OPEN TERMINAL</span>
+                </span>
+                <span className="text-[10px] text-[var(--system-ink-45)] font-mono hidden sm:inline">[~]</span>
               </button>
             )}
 
@@ -127,16 +133,16 @@ export function Hero({ onOpenTerminal }: HeroProps) {
               rel="noopener noreferrer"
               onMouseEnter={() => sound.playHover()}
               onClick={() => sound.playClick()}
-              className="sys-btn-secondary group"
+              className="sys-btn-secondary group !px-1.5 !py-2.5 sm:!px-7 sm:!py-3.5 !text-[9.5px] xs:!text-[10px] sm:!text-[0.78rem] !tracking-tight sm:!tracking-widest !gap-1 sm:!gap-3.5 w-full justify-center text-center"
             >
-              <span>GITHUB</span>
+              <span className="truncate">GITHUB</span>
               <svg
                 width="10"
                 height="10"
                 viewBox="0 0 10 10"
                 fill="none"
                 aria-hidden="true"
-                className="sys-arrow-icon shrink-0"
+                className="sys-arrow-icon shrink-0 hidden sm:inline-block"
               >
                 <path
                   d="M1 9L9 1M9 1H2M9 1V8"
@@ -150,91 +156,80 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           </div>
         </motion.div>
 
-        {/* Right Column: Oyudo-style Interactive 3D Canvas + Technical SVG Callouts */}
+        {/* Right Column: Floating Tactical Telemetry & System HUD */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative flex items-center justify-center min-h-[420px] lg:min-h-[560px]"
+          className="lg:col-span-5 relative flex flex-col gap-4 justify-center"
         >
-          {/* Ambient Radial Glow */}
-          <div className="absolute inset-0 -z-10 rounded-full bg-cyan-500/10 blur-[100px] pointer-events-none" />
-
-          {/* Interactive 3D Scene */}
-          <div className="relative w-full h-[440px] sm:h-[520px] rounded-2xl border border-[var(--system-rule)] bg-[var(--system-paper-card)] overflow-hidden shadow-2xl">
-            <ThreeCanvas
-              className="w-full h-full"
-              onInteract={handleCoreInteract}
-            />
-
-            {/* Technical Diagram Annotations / SVG Leader Lines (Cognito Systems Style) */}
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full select-none"
-              viewBox="0 0 500 500"
-              fill="none"
-            >
-              {/* Leader Line 1: Top Right -> AI Signal */}
-              <g className="opacity-80">
-                <circle cx="330" cy="140" r="4" fill="var(--signal-cyan)" />
-                <path
-                  d="M330 140 L410 90 L480 90"
-                  stroke="var(--system-rule-bright)"
-                  strokeWidth="1"
-                  className="sys-leader-line"
-                />
-                <circle cx="480" cy="90" r="2" fill="var(--system-ink)" />
-                <text
-                  x="475"
-                  y="78"
-                  textAnchor="end"
-                  fill="var(--system-ink)"
-                  className="font-mono text-[9px] tracking-wider"
-                >
-                  AI PIPELINE // EMBEDDINGS
-                </text>
-              </g>
-
-              {/* Leader Line 2: Bottom Left -> Backend Core */}
-              <g className="opacity-80">
-                <circle cx="170" cy="360" r="4" fill="var(--signal-violet)" />
-                <path
-                  d="M170 360 L90 410 L20 410"
-                  stroke="var(--system-rule-bright)"
-                  strokeWidth="1"
-                  className="sys-leader-line"
-                />
-                <circle cx="20" cy="410" r="2" fill="var(--system-ink)" />
-                <text
-                  x="25"
-                  y="400"
-                  textAnchor="start"
-                  fill="var(--system-ink)"
-                  className="font-mono text-[9px] tracking-wider"
-                >
-                  ENGINE // NESTJS &amp; POSTGRES
-                </text>
-              </g>
-            </svg>
-
-            {/* Technical HUD Overlay Badges */}
-            <div className="pointer-events-none absolute top-4 left-4 flex flex-col gap-1 font-mono text-[10px] text-[var(--system-ink-45)]">
-              <span className="text-[var(--system-ink)] font-semibold">CORE.RENDER // ACTIVE</span>
-              <span>GEOMETRY: ICOSA_LATTICE</span>
-              <span>INTERACTION COUNT: {pulseCount}</span>
+          {/* HUD Card 1: Core Telemetry Matrix */}
+          <div
+            onClick={handleCoreInteract}
+            className="group cursor-pointer rounded-2xl border border-[var(--system-rule)] bg-[var(--system-paper-card)]/80 backdrop-blur-xl p-6 transition-all hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] shadow-xl"
+          >
+            <div className="flex items-center justify-between border-b border-[var(--system-rule)] pb-3 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="size-2 rounded-full bg-cyan-400 animate-ping" />
+                <span className="font-mono text-xs font-bold text-[var(--system-ink)]">
+                  ARC_REACTOR // TELEMETRY
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-400/30">
+                OUTPUT: 3.0 GJ/s
+              </span>
             </div>
 
-            <div className="pointer-events-none absolute top-4 right-4 flex items-center gap-1.5 font-mono text-[10px] text-cyan-400 bg-black/60 px-2 py-1 rounded border border-white/10">
-              <span className="size-1.5 rounded-full bg-cyan-400 animate-ping" />
-              <span>DRAG TO ORBIT</span>
+            <div className="space-y-2.5 font-mono text-xs">
+              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
+                <span>CORE GEOMETRY:</span>
+                <span className="text-[var(--system-ink)] font-semibold">ICOSA_LATTICE // PALLADIUM</span>
+              </div>
+              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
+                <span>J.A.R.V.I.S. LINK:</span>
+                <span className="text-emerald-400">ACTIVE &amp; NOMINAL</span>
+              </div>
+              <div className="flex items-center justify-between text-[var(--system-ink-70)]">
+                <span>INTERACTION IMPULSES:</span>
+                <span className="text-cyan-400 font-bold">{pulseCount} CYCLES</span>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-[var(--system-rule)] flex items-center justify-between font-mono text-[10px] text-[var(--system-ink-45)]">
+              <span>DRAG BACKGROUND TO ORBIT</span>
+              <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">
+                TAP TO PULSE →
+              </span>
             </div>
           </div>
+
+          {/* HUD Card 2: Production Dossier Gateway */}
+          <Link
+            href="/work"
+            className="group rounded-2xl border border-[var(--system-rule)] bg-[var(--system-paper-card)]/80 backdrop-blur-xl p-6 transition-all hover:border-cyan-400 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)] shadow-xl block"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-400/30">
+                02 // PRODUCTION WORK
+              </span>
+              <span className="font-mono text-xs text-[var(--system-ink-45)] group-hover:text-cyan-400 transition-colors">
+                VIEW DOSSIER ↗
+              </span>
+            </div>
+            <h3 className="sys-display text-lg text-[var(--system-ink)] font-semibold mb-1 group-hover:text-cyan-400 transition-colors">
+              5 Production Systems Shipped
+            </h3>
+            <p className="font-mono text-xs text-[var(--system-ink-70)] line-clamp-2">
+              Martha AI, Fantasy Ikoyi, Black Pride YYC, WeAreGriot, and Crypto Tax Manager.
+            </p>
+          </Link>
         </motion.div>
       </div>
 
       {/* Footer Info & Scroll Cue */}
       <div className="relative z-10 flex items-end justify-between border-t border-[var(--system-rule)] pt-4">
         <div className="flex items-center gap-4 font-mono text-xs text-[var(--system-ink-45)]">
-          <span>AJ // KERNEL v2.4</span>
+          <span>AJ // KERNEL v2.4 [STARK_OS]</span>
           <span className="hidden sm:inline">·</span>
           <span className="hidden sm:inline text-[var(--system-ink-70)]">PRODUCTION SOFTWARE ENGINEER</span>
         </div>
@@ -244,7 +239,7 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           className="group flex items-center gap-2 font-mono text-xs text-[var(--system-ink-70)] hover:text-[var(--system-ink)] transition-colors"
           data-cursor-label="SCROLL"
         >
-          <span>SCROLL TO EXPLORE</span>
+          <span>SCROLL FOR METRICS &amp; TRANSMISSION</span>
           <svg
             width="10"
             height="12"

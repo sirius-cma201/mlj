@@ -1,18 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
-const sections = [
+const homeSections = [
   { id: "hero", label: "system", num: "01" },
   { id: "metrics", label: "metrics", num: "02" },
-  { id: "work", label: "projects", num: "03" },
-  { id: "architecture", label: "architecture", num: "04" },
-  { id: "contact", label: "transmission", num: "05" },
+  { id: "contact", label: "transmission", num: "03" },
+];
+
+const workSections = [
+  { id: "work", label: "projects", num: "01" },
+  { id: "architecture", label: "architecture", num: "02" },
+  { id: "contact", label: "transmission", num: "03" },
 ];
 
 export function NavigationRail() {
-  const [activeSection, setActiveSection] = useState("hero");
+  const pathname = usePathname();
+  const isWorkPage = pathname === "/work" || pathname === "/projects";
+  const sections = isWorkPage ? workSections : homeSections;
+
+  const [activeSection, setActiveSection] = useState(sections[0].id);
+
+  useEffect(() => {
+    setActiveSection(sections[0].id);
+  }, [pathname, sections]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +44,7 @@ export function NavigationRail() {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sections]);
 
   const activeIdx = Math.max(0, sections.findIndex((s) => s.id === activeSection));
   const activeItem = sections[activeIdx] || sections[0];
@@ -42,6 +55,8 @@ export function NavigationRail() {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const totalCount = String(sections.length).padStart(2, "0");
 
   return (
     <aside
@@ -59,7 +74,7 @@ export function NavigationRail() {
         <motion.div
           className="absolute -left-[3px] h-3 w-[7px] bg-[var(--system-ink)]"
           style={{
-            top: `${(activeIdx / (sections.length - 1)) * 88}%`,
+            top: `${(activeIdx / Math.max(1, sections.length - 1)) * 88}%`,
             transition: "top 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         />
@@ -72,7 +87,7 @@ export function NavigationRail() {
             onClick={() => scrollTo(sec.id)}
             aria-label={`Jump to ${sec.label}`}
             className="absolute -left-2.5 h-3 w-6 group flex items-center justify-center focus:outline-none"
-            style={{ top: `${(i / (sections.length - 1)) * 92}%` }}
+            style={{ top: `${(i / Math.max(1, sections.length - 1)) * 92}%` }}
           >
             <span
               className={`block h-1 w-1 rounded-full transition-all duration-300 ${
@@ -87,7 +102,7 @@ export function NavigationRail() {
 
       {/* Total sections count */}
       <span className="font-mono text-[10px] tracking-widest text-[var(--system-ink-25)]">
-        05
+        {totalCount}
       </span>
 
       {/* Vertical Writing-Mode Label */}

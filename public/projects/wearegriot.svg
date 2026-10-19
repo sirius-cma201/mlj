@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <!-- Dark Editorial Backdrop -->
+  <rect width="800" height="500" fill="#080706"/>
+  <rect width="800" height="500" fill="url(#griot-gradient)" opacity="0.95"/>
+
+  <defs>
+    <linearGradient id="griot-gradient" x1="0" y1="0" x2="800" y2="500">
+      <stop offset="0%" stop-color="#18120c"/>
+      <stop offset="50%" stop-color="#0a0806"/>
+      <stop offset="100%" stop-color="#050403"/>
+    </linearGradient>
+    <linearGradient id="amber-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="emerald-glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <pattern id="griot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Architectural Background Grid -->
+  <rect width="800" height="500" fill="url(#griot-grid)"/>
+
+  <!-- Top Metadata Bar -->
+  <rect x="32" y="28" width="736" height="42" rx="4" fill="rgba(30,22,14,0.6)" stroke="rgba(255,255,255,0.08)"/>
+  <circle cx="56" cy="49" r="4" fill="#f59e0b"/>
+  <text x="72" y="53" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="2">WEAREGRIOT</text>
+  <text x="185" y="53" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="10" letter-spacing="1.5">// ARTS &amp; CULTURE DIGITAL ECOSYSTEM</text>
+  
+  <rect x="618" y="38" width="134" height="22" rx="11" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.35)"/>
+  <text x="685" y="52" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="bold" letter-spacing="1">TICKETS &amp; MERCH</text>
+
+  <!-- Left: High-Concurrency Event Ticketing & Reservation Engine -->
+  <rect x="32" y="86" width="380" height="382" rx="8" fill="rgba(22,16,10,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  
+  <!-- Ticket Pass Card Plate -->
+  <rect x="52" y="106" width="340" height="210" rx="6" fill="#0d0a07" stroke="rgba(255,255,255,0.06)"/>
+  
+  <!-- Ticket Header & Decorative Notch Cutouts -->
+  <path d="M 52 176 H 392" stroke="rgba(255,255,255,0.1)" stroke-dasharray="6 4" stroke-width="1.2"/>
+  <circle cx="52" cy="176" r="8" fill="#16100a"/>
+  <circle cx="392" cy="176" r="8" fill="#16100a"/>
+
+  <!-- Event Title & Theatre Venue -->
+  <text x="72" y="136" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">FOR THE CULTURE // DUBLIN THEATRE FESTIVAL</text>
+  <text x="72" y="154" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="10">ABBEY THEATRE · FELISPEAKS / DAGOGO / SAMUEL</text>
+
+  <!-- Ticket Code & Concurrency Hold Indicator -->
+  <g transform="translate(72, 198)">
+    <rect x="0" y="0" width="140" height="32" rx="3" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)"/>
+    <text x="70" y="20" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="12" font-weight="bold" letter-spacing="2">GR-8X94KZ</text>
+    
+    <rect x="152" y="0" width="168" height="32" rx="3" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)"/>
+    <circle cx="166" cy="16" r="3.5" fill="#10b981"/>
+    <text x="178" y="20" fill="#34d399" font-family="monospace" font-size="9" font-weight="bold">HOLD: 14m 58s LEFT</text>
+  </g>
+
+  <!-- Door Redemption QR & Barcode Simulation -->
+  <g transform="translate(72, 246)">
+    <rect x="0" y="0" width="56" height="56" rx="4" fill="#140f0a" stroke="rgba(255,255,255,0.1)"/>
+    <!-- Simulated QR Grid -->
+    <rect x="6" y="6" width="16" height="16" fill="#fbbf24"/>
+    <rect x="34" y="6" width="16" height="16" fill="#fbbf24"/>
+    <rect x="6" y="34" width="16" height="16" fill="#fbbf24"/>
+    <rect x="24" y="24" width="8" height="8" fill="#ffffff"/>
+    <rect x="34" y="34" width="10" height="6" fill="#ffffff"/>
+
+    <text x="68" y="20" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">Door Redemption API</text>
+    <text x="68" y="36" fill="rgba(255,255,255,0.6)" font-family="monospace" font-size="10">POST /api/tickets/:id/redeem</text>
+    <text x="68" y="52" fill="#10b981" font-family="monospace" font-size="9">IDEMPOTENT · ANTI-DOUBLE SCAN ✓</text>
+  </g>
+
+  <!-- Ticketing Stats -->
+  <text x="52" y="342" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">Atomic Reservation &amp; Webhook Engine</text>
+  <text x="52" y="362" fill="rgba(255,255,255,0.55)" font-family="monospace" font-size="11">Clean Layered Architecture (Deliverymen → Handlers → UseCases)</text>
+
+  <!-- Bottom Badges -->
+  <rect x="52" y="380" width="340" height="68" rx="6" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.2)"/>
+  <text x="68" y="404" fill="#fbbf24" font-family="monospace" font-size="10" font-weight="bold">STRIPE WEBHOOK LIFECYCLE RECONCILIATION</text>
+  <text x="68" y="422" fill="rgba(255,255,255,0.7)" font-family="sans-serif" font-size="11">Automated inventory rollback upon session timeout or abandoned cart</text>
+  <text x="68" y="438" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="10">Zero Overbooking Guarantee · HMAC SHA-256 Signatures</text>
+
+  <!-- Right Top: E-Commerce Merch Pipeline -->
+  <rect x="428" y="86" width="340" height="182" rx="8" fill="rgba(22,16,10,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  
+  <text x="448" y="114" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Merchandise Store &amp; Variant Inventory</text>
+  <text x="448" y="132" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="10">ZUSTAND CART · ISO SHIPPING · ATOMIC DECREMENT</text>
+  
+  <!-- Merch Item 1 -->
+  <rect x="448" y="146" width="300" height="48" rx="4" fill="#0d0a07" stroke="rgba(255,255,255,0.05)"/>
+  <text x="460" y="166" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="600">Griot Signature Heavyweight Hoodie (400 GSM)</text>
+  <text x="460" y="182" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="9">SIZE: L · QTY: 1 · €75.00</text>
+  <rect x="670" y="156" width="66" height="20" rx="3" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.3)"/>
+  <text x="703" y="169" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="9" font-weight="bold">RESERVED</text>
+
+  <!-- Merch Item 2 / Donation Summary -->
+  <rect x="448" y="202" width="300" height="48" rx="4" fill="#0d0a07" stroke="rgba(255,255,255,0.05)"/>
+  <text x="460" y="222" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="600">Philanthropic Cultural Arts Donation</text>
+  <text x="460" y="238" fill="rgba(255,255,255,0.5)" font-family="monospace" font-size="9">TIER: MONTHLY PATRON · €25.00 / MO</text>
+  <rect x="670" y="212" width="66" height="20" rx="3" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.3)"/>
+  <text x="703" y="225" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="bold">STRIPE/PP</text>
+
+  <!-- Right Bottom: Custom Sanity Studio Operations Views -->
+  <rect x="428" y="286" width="340" height="182" rx="8" fill="rgba(22,16,10,0.8)" stroke="rgba(255,255,255,0.08)"/>
+  
+  <text x="448" y="314" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Custom Sanity Studio v3 Back-Office</text>
+  <text x="448" y="332" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="10">GROQ QUERIES · ATTENDEE TABLES · PDF/CSV EXPORTS</text>
+
+  <!-- Admin Table Row Simulation -->
+  <g transform="translate(448, 346)">
+    <rect x="0" y="0" width="300" height="24" rx="2" fill="#140f09" stroke="rgba(255,255,255,0.05)"/>
+    <text x="10" y="16" fill="rgba(255,255,255,0.7)" font-family="monospace" font-size="9">#TKT-4921</text>
+    <text x="90" y="16" fill="rgba(255,255,255,0.7)" font-family="monospace" font-size="9">Aoife O&apos;Connor</text>
+    <rect x="220" y="4" width="70" height="16" rx="8" fill="rgba(16,185,129,0.2)"/>
+    <text x="255" y="15" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="8">CHECKED IN</text>
+
+    <rect x="0" y="28" width="300" height="24" rx="2" fill="#140f09" stroke="rgba(255,255,255,0.05)"/>
+    <text x="10" y="44" fill="rgba(255,255,255,0.7)" font-family="monospace" font-size="9">#TKT-4922</text>
+    <text x="90" y="44" fill="rgba(255,255,255,0.7)" font-family="monospace" font-size="9">Tunde Adeyemi</text>
+    <rect x="220" y="32" width="70" height="16" rx="8" fill="rgba(245,158,11,0.2)"/>
+    <text x="255" y="43" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="8">ACTIVE TICKET</text>
+  </g>
+
+  <!-- Export Actions -->
+  <g transform="translate(448, 416)">
+    <rect x="0" y="0" width="96" height="26" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+    <text x="48" y="16" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="8" font-weight="bold">EXPORT CSV ↗</text>
+
+    <rect x="104" y="0" width="96" height="26" rx="3" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+    <text x="152" y="16" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="8" font-weight="bold">EXPORT PDF ↗</text>
+
+    <rect x="208" y="0" width="92" height="26" rx="3" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)"/>
+    <text x="254" y="16" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="8" font-weight="bold">SYNC DB ↻</text>
+  </g>
+
+  <!-- Bottom Metric Tag -->
+  <text x="448" y="456" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="bold">BITBUCKET PIPELINES · AWS SES &amp; HANDLEBARS · SHARP/WEBP</text>
+</svg>
