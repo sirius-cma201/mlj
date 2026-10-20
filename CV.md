@@ -1,6 +1,6 @@
 # JOSEPH AYENI
 **Senior Full-Stack Software Engineer | AI & Scalable Systems**  
-08144503637 • [manlikejoee@gmail.com](mailto:manlikejoee@gmail.com) • [mlj-nine.vercel.app](https://mlj-nine.vercel.app/)
+08144503637 • [josephthedev001@gmail.com](mailto:josephthedev001@gmail.com) • [mlj-nine.vercel.app](https://mlj-nine.vercel.app/)
 
 ---
 

@@ -7,7 +7,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
     "Software Engineer focused on scalable backend systems, AI-powered products, and production-ready SaaS.",
   github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "https://github.com/sirius-cma201",
-  email: process.env.NEXT_PUBLIC_EMAIL ?? "manlikejoee@gmail.com",
+  email: process.env.NEXT_PUBLIC_EMAIL ?? "josephthedev001@gmail.com",
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "",
   projects: {
     marthaAi: {
