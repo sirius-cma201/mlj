@@ -1,11 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { projects } from "@/data/projects";
+import { projects, type LoomWalkthrough } from "@/data/projects";
 import { ProjectCard } from "./ProjectCard";
+import { LoomWalkthroughModal } from "./LoomWalkthroughModal";
 
-export function Projects({ chapterNum = "01" }: { chapterNum?: string }) {
+export function Projects({ chapterNum = "03" }: { chapterNum?: string }) {
   const [syncedSlideIndex, setSyncedSlideIndex] = useState(0);
+  const [activeWalkthrough, setActiveWalkthrough] = useState<{
+    projectTitle: string;
+    walkthrough: LoomWalkthrough;
+  } | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -54,20 +59,20 @@ export function Projects({ chapterNum = "01" }: { chapterNum?: string }) {
           <span className="font-mono text-xs text-cyan-400">{chapterNum}</span>
           <span className="h-px w-6 bg-[var(--system-rule)]" />
           <span className="font-mono text-xs uppercase tracking-widest text-[var(--system-ink-70)]">
-            SELECTED PRODUCTION WORK
+            PRODUCTION ARCHITECTURE &amp; CASE STUDIES
           </span>
         </div>
 
         {/* Section Title & Philosophy */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
           <div className="lg:col-span-8">
-            <h2 className="sys-display text-3xl sm:text-4xl lg:text-5xl text-[var(--system-ink)] max-w-[14ch]">
-              Shipped systems operating under real demand.
+            <h2 className="sys-display text-3xl sm:text-4xl lg:text-5xl text-[var(--system-ink)] max-w-[16ch]">
+              Problem → Architecture → Measured Impact.
             </h2>
           </div>
           <div className="lg:col-span-4">
             <p className="text-base text-[var(--system-ink-70)] leading-relaxed">
-              Problem → Architecture → Verification. Designed for resilience, clean APIs, and transparent team collaboration.
+              Deep-dive case studies across autonomous LLM workflows, NestJS microservices, PostgreSQL data models, and high-concurrency production platforms—paired with 2-minute walkthrough slots and GitHub repositories.
             </p>
           </div>
         </div>
@@ -81,10 +86,21 @@ export function Projects({ chapterNum = "01" }: { chapterNum?: string }) {
               index={index}
               syncedSlideIndex={syncedSlideIndex}
               onSelectSlide={setSyncedSlideIndex}
+              onOpenWalkthrough={(projectTitle, walkthrough) =>
+                setActiveWalkthrough({ projectTitle, walkthrough })
+              }
             />
           ))}
         </div>
       </div>
+
+      {/* Native <dialog> 2-Min Loom Walkthrough Modal */}
+      <LoomWalkthroughModal
+        isOpen={Boolean(activeWalkthrough)}
+        onClose={() => setActiveWalkthrough(null)}
+        projectTitle={activeWalkthrough?.projectTitle ?? ""}
+        walkthrough={activeWalkthrough?.walkthrough ?? null}
+      />
     </section>
   );
 }

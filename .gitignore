@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# tailored job applications & CVs (local only, do not commit)
+applications/
+tailored_cvs/

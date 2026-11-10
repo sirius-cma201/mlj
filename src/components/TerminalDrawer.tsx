@@ -20,7 +20,7 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
   const [logs, setLogs] = useState<CommandLog[]>([
     {
       command: "init system --profile aj",
-      response: "AJ Kernel v2.4 initialized. Production AI & Backend Engineer. Type 'help' for available commands.",
+      response: "AJ Kernel v2.4 initialized. Full-Stack & AI Systems Engineer (Next.js, NestJS, TypeScript & Agent Workflows). Type 'help' for available commands.",
     },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -58,7 +58,7 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
             <p><span className="text-white font-bold">contact</span> - Show communication channels</p>
             <p><span className="text-white font-bold">clear</span> - Clear terminal buffer</p>
             <p><span className="text-white font-bold">exit</span> - Close terminal console</p>
-            <p className="text-cyan-400/50 pt-1 text-[11px]">// Classified protocols: try &apos;jarvis&apos;, &apos;friday&apos;, &apos;stark&apos;, &apos;avengers&apos;</p>
+            <p className="text-cyan-400/50 pt-1 text-[11px]">{"//"} Classified protocols: try &apos;jarvis&apos;, &apos;friday&apos;, &apos;stark&apos;, &apos;avengers&apos;</p>
           </div>
         );
         break;
@@ -91,7 +91,10 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
             <p>• Real-time SSE live art auction platform with passwordless magic-link JWT auth.</p>
             <p>• Google &lt;model-viewer&gt; WebXR 3D spatial artifact walkthroughs &amp; AR projection.</p>
             <p>• Multi-currency Zap Pay &amp; Stripe rails with 100% operational uptime on AWS EC2/PM2.</p>
-            <p className="pt-1"><a href="https://fantasyikoyi.com" target="_blank" rel="noreferrer" className="text-cyan-300 underline font-mono">Visit fantasyikoyi.com ↗</a></p>
+            <div className="pt-1 flex flex-wrap gap-3">
+              <a href="https://fantasyikoyi.com" target="_blank" rel="noreferrer" className="text-cyan-300 underline font-mono">Visit fantasyikoyi.com ↗</a>
+              <a href="https://www.loom.com/share/c1bcddf79f89427cb41d75b4078ac793" target="_blank" rel="noreferrer" className="text-cyan-300 underline font-mono">Watch Loom Walkthrough ↗</a>
+            </div>
           </div>
         );
         break;
@@ -163,10 +166,10 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
       case "stack":
         res = (
           <div className="space-y-1 text-xs">
-            <p><span className="text-cyan-400">Languages:</span> {techStack.languages.join(", ")}</p>
-            <p><span className="text-purple-400">Backend & DB:</span> {techStack.backend.join(", ")} + {techStack.databases.join(", ")}</p>
-            <p><span className="text-emerald-400">AI & Workflows:</span> {techStack.ai.join(", ")}</p>
-            <p><span className="text-amber-400">Web3 & Blockchain:</span> {techStack.blockchain.join(", ")}</p>
+            <p><span className="text-cyan-400">Frontend &amp; UI:</span> {techStack.frontend.join(", ")}</p>
+            <p><span className="text-purple-400">Backend &amp; APIs:</span> {techStack.backend.join(", ")}</p>
+            <p><span className="text-amber-400">Databases &amp; Infra:</span> {techStack.databases.join(", ")} · {techStack.cloud.join(", ")}</p>
+            <p><span className="text-emerald-400">AI Systems:</span> {techStack.ai.join(", ")}</p>
           </div>
         );
         break;

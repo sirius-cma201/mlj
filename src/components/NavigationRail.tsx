@@ -5,15 +5,19 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const homeSections = [
-  { id: "hero", label: "system", num: "01" },
+  { id: "hero", label: "overview", num: "01" },
   { id: "metrics", label: "metrics", num: "02" },
-  { id: "contact", label: "transmission", num: "03" },
+  { id: "work", label: "case studies", num: "03" },
+  { id: "leadership", label: "leadership", num: "04" },
+  { id: "architecture", label: "tech stack", num: "05" },
+  { id: "contact", label: "contact", num: "06" },
 ];
 
 const workSections = [
-  { id: "work", label: "projects", num: "01" },
-  { id: "architecture", label: "architecture", num: "02" },
-  { id: "contact", label: "transmission", num: "03" },
+  { id: "work", label: "case studies", num: "01" },
+  { id: "leadership", label: "leadership", num: "02" },
+  { id: "architecture", label: "tech stack", num: "03" },
+  { id: "contact", label: "contact", num: "04" },
 ];
 
 export function NavigationRail() {
@@ -24,20 +28,19 @@ export function NavigationRail() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
 
   useEffect(() => {
-    setActiveSection(sections[0].id);
-  }, [pathname, sections]);
-
-  useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
+      let matched = sections[0].id;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i].id);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i].id);
+          matched = sections[i].id;
           break;
         }
       }
+
+      setActiveSection(matched);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

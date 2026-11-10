@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Projects } from "@/components/Projects";
+import { Leadership } from "@/components/Leadership";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { NavigationRail } from "@/components/NavigationRail";
@@ -33,7 +34,7 @@ export default function WorkPage() {
       <Navbar onOpenTerminal={() => setTerminalOpen(true)} />
       <NavigationRail />
 
-      <main className="relative z-10 w-full overflow-hidden">
+      <main id="content" tabIndex={-1} className="relative z-10 w-full overflow-hidden">
         {/* Page Hero Header */}
         <section className="relative px-6 pt-28 pb-12 lg:px-12 lg:pt-32 border-b border-[var(--system-rule)] bg-[var(--system-paper)]">
           <div className="sys-grid-backdrop absolute inset-0 pointer-events-none" />
@@ -65,15 +66,15 @@ export default function WorkPage() {
             <div className="pt-10 pb-6 max-w-4xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-[var(--system-rule)] bg-[var(--system-paper-card)] px-3 py-1 font-mono text-xs text-[var(--system-ink-70)] mb-4">
                 <span className="size-1.5 rounded-full bg-cyan-400" />
-                <span>SELECTED PRODUCTION WORK & ARCHITECTURE</span>
+                <span>FULL-STACK &amp; AI SYSTEMS ARCHITECTURE</span>
               </div>
 
               <h1 className="sys-display text-4xl sm:text-5xl lg:text-6xl text-[var(--system-ink)] tracking-tight">
-                Shipped systems operating under real demand.
+                Production architecture operating under real demand.
               </h1>
 
               <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--system-ink-70)]">
-                Detailed breakdowns of autonomous AI support engines, real-time cultural commerce hubs, scalable multi-tenant platforms, and distributed Web3 systems built for reliability and measured impact.
+                Problem → Technical Architecture → Impact deep dives across Next.js App Router SSR platforms, NestJS microservices, PostgreSQL transactional data models, and autonomous LLM workflows.
               </p>
 
               {/* Quick dossier stats row */}
@@ -104,15 +105,18 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* Chapter 01: Projects */}
+        {/* Chapter 01: Case Studies */}
         <Projects chapterNum="01" />
 
-        {/* Chapter 02: Architecture & Capabilities */}
-        <About chapterNum="02" />
+        {/* Chapter 02: Leadership & Engineering Impact */}
+        <Leadership chapterNum="02" />
+
+        {/* Chapter 03: Categorized Tech Stack */}
+        <About chapterNum="03" />
       </main>
 
-      {/* Chapter 03: Transmission (Footer) */}
-      <Footer chapterNum="03" />
+      {/* Chapter 04: Transmission (Footer) */}
+      <Footer chapterNum="04" />
 
       {/* Interactive System Terminal */}
       <TerminalDrawer

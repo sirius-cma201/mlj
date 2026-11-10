@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Metrics } from "@/components/Metrics";
+import { Projects } from "@/components/Projects";
+import { Leadership } from "@/components/Leadership";
+import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { NavigationRail } from "@/components/NavigationRail";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
@@ -39,30 +42,33 @@ export default function Home() {
         {/* Interactive 3D Canvas with pointer-events-auto for drag/orbit */}
         <div className="absolute inset-0 pointer-events-auto">
           <ThreeCanvas
-            className="w-full h-full opacity-70 dark:opacity-85"
+            className="w-full h-full opacity-80 dark:opacity-95"
             isBackground={true}
           />
         </div>
 
-        {/* Subtle Radial Vignette Scrim for Text Contrast */}
+        {/* Subtle Radial Vignette Scrim for Edge Contrast */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 20%, var(--system-paper) 95%)",
-            opacity: 0.75,
+              "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 30%, var(--system-paper) 98%)",
+            opacity: 0.5,
           }}
         />
       </div>
 
-      {/* Main Content: Hero (System Overview) + Metrics */}
-      <main className="relative z-10 w-full">
+      {/* Main Content */}
+      <main id="content" tabIndex={-1} className="relative z-10 w-full">
         <Hero onOpenTerminal={() => setTerminalOpen(true)} />
         <Metrics chapterNum="02" />
+        <Projects chapterNum="03" />
+        <Leadership chapterNum="04" />
+        <About chapterNum="05" />
       </main>
 
-      {/* Chapter 03: Transmission (Contact & Terminal direct) */}
-      <Footer chapterNum="03" />
+      {/* Chapter 06: Transmission (Contact & Terminal direct) */}
+      <Footer chapterNum="06" />
 
       {/* Interactive System Terminal */}
       <TerminalDrawer
