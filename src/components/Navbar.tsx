@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "./ThemeToggle";
+import { Logo } from "./Logo";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { sound } from "@/lib/sound";
 
@@ -17,11 +18,12 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
   const isWorkPage = pathname === "/work" || pathname === "/projects";
 
   const navLinks = [
-    { href: isWorkPage ? "/#hero" : "#hero", label: "01 System" },
-    { href: isWorkPage ? "#work" : "/work", label: "02 Projects" },
-    { href: isWorkPage ? "/#metrics" : "#metrics", label: "03 Metrics" },
-    { href: isWorkPage ? "#architecture" : "/work#architecture", label: "04 Architecture" },
-    { href: isWorkPage ? "/#contact" : "#contact", label: "05 Transmission" },
+    { href: isWorkPage ? "/#hero" : "#hero", label: "01 Overview" },
+    { href: isWorkPage ? "/#metrics" : "#metrics", label: "02 Metrics" },
+    { href: "#work", label: "03 Case Studies" },
+    { href: "#leadership", label: "04 Leadership" },
+    { href: "#architecture", label: "05 Stack" },
+    { href: "#contact", label: "06 Contact" },
   ];
 
   const { scrollY } = useScroll();
@@ -66,16 +68,16 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
               href={isWorkPage ? "/" : "#hero"}
               onMouseEnter={() => sound.playHover()}
               onClick={() => sound.playClick()}
-              className="flex items-center gap-2 font-mono text-sm font-semibold tracking-wider text-[var(--system-ink)] group"
+              className="flex items-center gap-2.5 font-mono text-sm font-semibold tracking-wider text-[var(--system-ink)] group"
             >
-              <span className="size-2 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
+              <Logo size={24} className="group-hover:drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]" />
               <span>{siteConfig.name}</span>
               <span className="text-[var(--system-ink-45)] font-normal text-xs">{"// SYSTEMS"}</span>
             </Link>
           </div>
 
           {/* Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav aria-label="Primary" className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -92,7 +94,6 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
 
           {/* Actions: Sound + Terminal Trigger + Theme Toggle + Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Audio Feedback Toggle */}
             <button
               type="button"
               onClick={toggleSound}
@@ -104,7 +105,11 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
               }`}
               data-cursor-label="AUDIO"
             >
-              <span className={`size-1.5 rounded-full ${soundEnabled ? "bg-cyan-400 animate-pulse" : "bg-neutral-600"}`} />
+              <span
+                className={`size-1.5 rounded-full ${
+                  soundEnabled ? "bg-cyan-400 animate-pulse" : "bg-neutral-600"
+                }`}
+              />
               <span className="text-[10px] hidden sm:inline">{soundEnabled ? "SND:ON" : "MUTE"}</span>
             </button>
 
@@ -120,8 +125,10 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
                 data-cursor-label="TERMINAL"
               >
                 <span className="text-cyan-400">&gt;_</span>
-                <span>TERMINAL</span>
-                <span className="rounded bg-[var(--system-rule)] px-1 text-[9px] text-[var(--system-ink-45)]">~</span>
+                <span>CLI</span>
+                <span className="rounded bg-[var(--system-rule)] px-1 text-[9px] text-[var(--system-ink-45)]">
+                  ~
+                </span>
               </button>
             )}
 
@@ -129,12 +136,14 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
 
             {/* Desktop Connect CTA */}
             <a
-              href="#contact"
+              href={siteConfig.calendarUrl || "#contact"}
+              target={siteConfig.calendarUrl ? "_blank" : undefined}
+              rel={siteConfig.calendarUrl ? "noopener noreferrer" : undefined}
               onMouseEnter={() => sound.playHover()}
               onClick={() => sound.playClick()}
-              className="group hidden sm:inline-flex items-center gap-2.5 border border-[var(--system-rule)] bg-[var(--system-paper-card)] px-4 py-2 font-mono text-xs tracking-wider text-[var(--system-ink)] transition-all hover:border-[var(--system-rule-bright)] hover:bg-[var(--system-paper)]"
+              className="group hidden sm:inline-flex items-center gap-2 border border-[var(--system-rule)] bg-[var(--system-paper-card)] px-4 py-2 font-mono text-xs tracking-wider text-[var(--system-ink)] transition-all hover:border-[var(--system-rule-bright)] hover:bg-[var(--system-paper)]"
             >
-              <span>CONNECT</span>
+              <span>GET IN TOUCH</span>
               <svg
                 width="10"
                 height="10"
@@ -176,7 +185,7 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
         </div>
       </div>
 
-      {/* Cognito-style Fullscreen Mobile Navigation Drawer */}
+      {/* Fullscreen Mobile Navigation Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -186,7 +195,7 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-x-0 top-16 z-40 border-b border-[var(--system-rule)] bg-[var(--system-paper)]/95 backdrop-blur-2xl p-6 lg:hidden shadow-2xl"
           >
-            <nav className="flex flex-col gap-4 font-mono text-sm">
+            <nav aria-label="Mobile" className="flex flex-col gap-4 font-mono text-sm">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -213,11 +222,11 @@ export function Navbar({ onOpenTerminal }: NavbarProps) {
               )}
 
               <Link
-                href={isWorkPage ? "/#contact" : "#contact"}
+                href="#contact"
                 onClick={handleLinkClick}
                 className="mt-1 flex w-full items-center justify-center gap-2 bg-[var(--system-ink)] py-3 font-mono text-xs text-[var(--system-paper)] uppercase tracking-widest"
               >
-                <span>TRANSMISSION DIRECT // CONNECT</span>
+                <span>GET IN TOUCH // CONTACT</span>
               </Link>
             </nav>
           </motion.div>

@@ -6,22 +6,49 @@ export type ProjectImage = {
   caption?: string;
 };
 
+export type ArchitectureLayer = {
+  layer: string;
+  detail: string;
+};
+
+export type LoomWalkthrough = {
+  url?: string;
+  duration: string;
+  title: string;
+  envKey: string;
+  outline: { time: string; topic: string }[];
+};
+
 export type Project = {
   id: string;
   title: string;
+  organization?: string;
+  role: string;
   tagline: string;
   featured?: boolean;
   status?: string;
   image: string;
   images?: ProjectImage[];
   problem: string;
-  solution: string;
+  architecture: {
+    summary: string;
+    layers: ArchitectureLayer[];
+  };
+  impact: string[];
+  stackSummary: {
+    frontend?: string[];
+    backend?: string[];
+    dataInfra?: string[];
+    ai?: string[];
+  };
+  /** Flat summary list kept for terminal/CLI compatibility */
   tech: string[];
   contributions?: string[];
-  impact: string[];
+  loomWalkthrough: LoomWalkthrough;
   links: {
     github?: string;
-    demo?: string;
+    repoStatus?: "public" | "private";
+    repoLabel?: string;
     live?: string;
     liveLabel?: string;
     secondaryLive?: {
@@ -31,11 +58,21 @@ export type Project = {
   };
 };
 
+export type TechTier = {
+  id: "frontend" | "backend" | "databases-infra" | "ai-systems";
+  num: string;
+  label: string;
+  summary: string;
+  items: { name: string; context: string }[];
+};
+
 export const projects: Project[] = [
   {
     id: "martha-ai",
     title: "Martha AI",
-    tagline: "AI-Powered Customer Support Platform & Cross-Platform Mobile App",
+    organization: "Cognito Systems",
+    role: "Full-Stack & AI Systems Engineer",
+    tagline: "Autonomous AI Support Engine & Cross-Platform Operator Suite",
     featured: true,
     image: "/projects/futuristic/martha-futuristic.jpg",
     images: [
@@ -52,54 +89,85 @@ export const projects: Project[] = [
       {
         src: "/projects/martha-ai.svg",
         label: "ARCHITECTURAL BLUEPRINT",
-        caption: "NestJS APIs, Vector store workflows & RBAC telemetry",
+        caption: "NestJS microservices, Vector RAG & LLM tool-calling pipelines",
       },
     ],
     problem:
-      "Businesses needed a scalable way to manage customer interactions across web and mobile communication channels. Manual onboarding processes slowed adoption, support teams spent significant time handling repetitive inquiries, and administrators lacked visibility into platform activity, operator mobility, and team performance.",
-    solution:
-      "Contributed across frontend, backend, and cross-platform mobile systems to deliver production-ready features including the official Martha AI mobile app (iOS & Android), AI-assisted onboarding, role-based access control, analytics dashboards, communication channel management, and platform reliability improvements.",
+      "Multi-tenant SaaS teams struggled with high volumes of repetitive customer inquiries, slow manual business onboarding, and disconnected web/mobile operator workflows without role-safe visibility into AI resolution accuracy.",
+    architecture: {
+      summary:
+        "Engineered a full-stack AI operations architecture pairing Next.js App Router SSR dashboards and a React Native mobile client (iOS & Android) with modular NestJS microservices, PostgreSQL transactional schemas, and OpenAI tool-calling agent pipelines.",
+      layers: [
+        {
+          layer: "Frontend & Mobile",
+          detail:
+            "Next.js App Router SSR operator console + React Native (iOS/Android) app with offline state sync, optimistic ticket triage, and session recovery.",
+        },
+        {
+          layer: "Backend Microservices",
+          detail:
+            "NestJS modular services enforcing multi-tenant RBAC, invitation token workflows, Mailchimp/CMS webhook integrations, and real-time analytics aggregation.",
+        },
+        {
+          layer: "Data & AI Agent Pipeline",
+          detail:
+            "PostgreSQL transactional data models paired with vector store retrieval (RAG), automated business onboarding generation, and structured LLM tool-calling.",
+        },
+      ],
+    },
+    impact: [
+      "91.7% autonomous support resolution verified across 3,000+ live production customer workflows",
+      "Delivered the official React Native mobile app (iOS & Android), cutting operator response latency to sub-minute levels",
+      "Reduced manual onboarding friction through automated AI business-profile extraction and vector indexing pipelines",
+      "Hardened multi-tenant security with strict RBAC permission boundaries and automated frontend/backend test coverage",
+    ],
+    stackSummary: {
+      frontend: ["Next.js (App Router)", "React Native", "TypeScript"],
+      backend: ["NestJS", "REST APIs", "RBAC & Webhooks"],
+      dataInfra: ["PostgreSQL", "Docker", "Automated Tests"],
+      ai: ["OpenAI Tool Calling", "Vector Stores / RAG", "Onboarding Agents"],
+    },
     tech: [
-      "React Native",
       "Next.js",
-      "React",
+      "React Native",
       "TypeScript",
       "NestJS",
       "PostgreSQL",
       "OpenAI",
-      "Vector Store Workflows",
-      "iOS & Android",
+      "Vector Stores",
     ],
     contributions: [
-      "Architected and engineered the official Martha AI cross-platform mobile application (React Native for iOS and Android), enabling on-the-go support operators to triage tickets, review AI suggestions, and receive high-priority push notifications.",
-      "Built AI-powered onboarding workflows with automated business description generation and AI training support.",
-      "Designed and implemented backend APIs and data models supporting onboarding, mobile session synchronization, and AI-assisted setup.",
-      "Implemented role-based access control, invitation systems, and permission management workflows across web and mobile.",
-      "Developed analytics dashboards and reporting interfaces for business insights.",
-      "Built communication channel management tools and unified sharing experiences.",
-      "Integrated third-party services including Mailchimp, email systems, CMS platforms, and marketing tools.",
-      "Improved application performance through optimized loading states, session recovery, offline state synchronization, and error handling.",
-      "Enhanced mobile responsiveness and overall user experience across the platform.",
-      "Contributed automated test coverage for frontend, mobile, and backend functionality.",
-      "Reviewed frontend pull requests and helped maintain engineering quality standards across multiple products.",
+      "Architected and shipped the official Martha AI cross-platform mobile application (React Native for iOS and Android) with push notifications and live AI-suggestion triage.",
+      "Built AI-assisted onboarding pipelines with automated business description generation, schema validation, and vector store indexing.",
+      "Designed NestJS API endpoints and PostgreSQL relational models supporting multi-tenant permissions, session synchronization, and analytics.",
+      "Implemented RBAC access controls, team invitation hierarchies, and third-party integrations (Mailchimp, email channels, CMS platforms).",
+      "Reviewed frontend pull requests and added automated test coverage across web, mobile, and backend services.",
     ],
-    impact: [
-      "Streamlined business onboarding with AI-generated descriptions and automated training workflows",
-      "Improved platform security through role and permission management across web and mobile clients",
-      "Enabled operational visibility via analytics dashboards and channel insights",
-      "Increased reliability with session recovery, error handling, and mobile UX improvements",
-      "Delivered the cross-platform mobile application on iOS and Android, unlocking real-time mobility and sub-minute response times for support teams",
-    ],
+    loomWalkthrough: {
+      url: siteConfig.projects.marthaAi.loom || siteConfig.projects.marthaAi.demo,
+      duration: "2:00",
+      title: "Martha AI — NestJS Agent Pipeline & Multi-Tenant Architecture Walkthrough",
+      envKey: "NEXT_PUBLIC_MARTHA_AI_LOOM",
+      outline: [
+        { time: "0:00 – 0:25", topic: "Multi-tenant support bottleneck & resolution metrics" },
+        { time: "0:25 – 1:05", topic: "NestJS microservice boundaries, PostgreSQL schemas & RBAC" },
+        { time: "1:05 – 1:40", topic: "Vector retrieval + OpenAI tool-calling & mobile sync demo" },
+        { time: "1:40 – 2:00", topic: "Production reliability, session recovery & 91.7% impact" },
+      ],
+    },
     links: {
-      github: siteConfig.projects.marthaAi.github,
-      demo: siteConfig.projects.marthaAi.demo,
+      github: siteConfig.projects.marthaAi.github || undefined,
+      repoStatus: siteConfig.projects.marthaAi.github ? "public" : "private",
+      repoLabel: "GITHUB REPO",
       live: siteConfig.projects.marthaAi.live,
+      liveLabel: "LIVE PLATFORM",
     },
   },
   {
     id: "fantasy-ikoyi",
     title: "Fantasy Ikoyi",
-    tagline: "Spatial Commerce, Live Auctions & Cultural Brand Platform",
+    role: "Lead Full-Stack Engineer (Post-Handover Ownership)",
+    tagline: "Real-Time Art Auctions, WebXR Spatial Commerce & Bespoke Studio",
     featured: true,
     image: "/projects/futuristic/fantasy-futuristic.jpg",
     images: [
@@ -116,50 +184,85 @@ export const projects: Project[] = [
       {
         src: "/projects/fantasy-ikoyi.svg",
         label: "ARCHITECTURAL BLUEPRINT",
-        caption: "3D artifact wireframe, SSE live auction & Web Audio synth",
+        caption: "SSE live auction room, SVG studio & WebXR artifact pipeline",
       },
     ],
     problem:
-      "Handed over in pre-launch status at ~60% completion. The foundation required stabilization, critical business capabilities (live art auctions, bespoke vector merch studio, procedural audio engine) were missing, and the platform needed to launch rapidly without compromising its high-contrast luxury editorial aesthetic.",
-    solution:
-      "Stepped in as sole post-handover engineer to eliminate architectural debt and lead the platform to production. Engineered a zero-asset procedural 8-bit Web Audio API synth, an interactive SVG garment customizer with real-time multi-currency pricing, an SSE-driven live auction bidding room with passwordless JWT magic links, and Google <model-viewer> WebXR 3D spatial artifact walkthroughs. Integrated Zap Pay and Stripe multi-currency checkout on AWS EC2/PM2 infrastructure with 100% operational uptime.",
+      "Inherited at ~60% pre-launch completion with architectural debt and missing core revenue systems—requiring live real-time bidding, bespoke interactive garment customization, and 3D spatial product inspection under an aggressive launch deadline.",
+    architecture: {
+      summary:
+        "Took 100% engineering ownership to stabilize the stack and ship a real-time Server-Sent Events (SSE) auction engine, passwordless JWT magic-link auth, zero-asset Web Audio synthesis, and AWS EC2/PM2 production infrastructure.",
+      layers: [
+        {
+          layer: "Frontend & Spatial UI",
+          detail:
+            "React 19 + TypeScript + Tailwind v4 featuring an SVG matrix garment customizer, Google <model-viewer> WebXR AR projection, and procedural Web Audio API synth.",
+        },
+        {
+          layer: "Real-Time & Auth API",
+          detail:
+            "Node.js/Express backend streaming live bid state over SSE with adaptive polling fallbacks, optimistic UI locking, and passwordless Bearer JWT magic links.",
+        },
+        {
+          layer: "Data, Payments & Cloud",
+          detail:
+            "MongoDB transactional auction/waitlist persistence, multi-currency Stripe & Zap Pay checkout rails, and PM2-managed AWS EC2 deployment.",
+        },
+      ],
+    },
+    impact: [
+      "Stabilized inherited codebase from 60% completion to full production launch with 100% post-launch uptime on AWS EC2/PM2",
+      "Delivered sub-second live auction bid updates via SSE and cut bidder onboarding drop-off by 70% with passwordless magic links",
+      "Unlocked direct-to-consumer custom apparel revenue via an in-browser SVG garment studio with dynamic NGN/USD/EUR/GBP pricing",
+      "Eliminated audio bundle overhead with a procedural Web Audio API synthesizer while preserving <1s initial load times",
+    ],
+    stackSummary: {
+      frontend: ["React 19", "TypeScript", "WebXR & Web Audio"],
+      backend: ["Node.js / Express", "SSE Streams", "JWT Magic Links"],
+      dataInfra: ["MongoDB", "AWS EC2 / PM2", "Stripe & Zap Pay"],
+    },
     tech: [
       "React 19",
       "TypeScript",
-      "Vite 7",
       "Node.js",
       "Express",
+      "SSE",
       "MongoDB",
-      "Web Audio API",
-      "Server-Sent Events (SSE)",
-      "@google/model-viewer (WebXR)",
-      "Tailwind CSS v4",
-      "Stripe",
-      "Zap Pay",
+      "AWS EC2",
+      "WebXR",
     ],
     contributions: [
-      "Engineered a zero-bundle-overhead procedural audio synthesizer using Web Audio API (oscillators & gain envelopes) for 15+ tactile UI interaction events.",
-      "Architected an in-browser interactive garment design studio ('MAKE SOMETHING') with SVG clipping paths, coordinate transforms, and real-time multi-currency pricing calculation.",
-      "Built a real-time live art auction engine with Server-Sent Events (SSE) streaming, adaptive polling fallbacks, optimistic UI bidding, and telemetry countdown timers.",
-      "Implemented passwordless magic-link authentication via Bearer JWT tokens, cutting bidder friction and onboarding drop-off by 70%.",
-      "Integrated Google's @google/model-viewer with custom TypeScript definitions for 360° PBR 3D artifact rendering and mobile WebXR Augmented Reality projection.",
-      "Built a fault-tolerant waitlist ingestion pipeline featuring graceful offline degradation with localStorage caching and asynchronous MongoDB dispatch.",
-      "Maintained 100% post-handover ownership across frontend releases, content lifecycle, AWS EC2 PM2 server operations, and internal admin portal workflows.",
+      "Assumed sole architectural ownership at 60% pre-launch, resolving build/runtime debt and shipping all missing core features.",
+      "Built the SSE-powered live art auction engine with adaptive polling fallbacks, anti-stale timers, and optimistic bid updates.",
+      "Engineered the interactive SVG garment customizer ('MAKE SOMETHING') with real-time multi-currency conversion.",
+      "Integrated passwordless JWT magic-link authentication and dual Zap Pay / Stripe payment processing.",
     ],
-    impact: [
-      "Scaled high-ticket contemporary African art auctions with sub-second bid reflection and live leader telemetry",
-      "Unlocked high-margin direct-to-consumer custom luxury merchandise revenue with the bespoke garment studio",
-      "Captured thousands of qualified member applications via resilient waitlist architecture with zero signup loss",
-      "Maintained 100% operational uptime and <1s initial page load time with pristine Core Web Vitals across mobile and desktop",
-    ],
+    loomWalkthrough: {
+      url: siteConfig.projects.fantasyIkoyi.loom,
+      duration: "2:00",
+      title: "Fantasy Ikoyi — SSE Auction Engine & Spatial Commerce Deep Dive",
+      envKey: "NEXT_PUBLIC_FANTASY_IKOYI_LOOM",
+      outline: [
+        { time: "0:00 – 0:25", topic: "60% handover audit & pre-launch stabilization plan" },
+        { time: "0:25 – 1:05", topic: "SSE real-time bidding state, JWT magic links & MongoDB sync" },
+        { time: "1:05 – 1:40", topic: "SVG garment customizer & Web Audio / WebXR internals" },
+        { time: "1:40 – 2:00", topic: "AWS EC2/PM2 operations & 100% uptime outcomes" },
+      ],
+    },
     links: {
+      github: siteConfig.projects.fantasyIkoyi.github || undefined,
+      repoStatus: siteConfig.projects.fantasyIkoyi.github ? "public" : "private",
+      repoLabel: "GITHUB REPO",
       live: siteConfig.projects.fantasyIkoyi.live,
+      liveLabel: "LIVE PLATFORM",
     },
   },
   {
     id: "black-pride",
     title: "Black Pride YYC & Black Pride Canada",
-    tagline: "Members Portal, LMS Courses & Healing Hub for Black 2SLGBTQ+ Community",
+    organization: "Cognito Systems",
+    role: "Engineering & Frontend Lead",
+    tagline: "Multi-Platform Community Ecosystem, LMS Engine & Trauma-Informed Wellness Hub",
     featured: true,
     image: "/projects/futuristic/blackpride-futuristic.jpg",
     images: [
@@ -176,43 +279,74 @@ export const projects: Project[] = [
       {
         src: "/projects/black-pride.svg",
         label: "ARCHITECTURAL BLUEPRINT",
-        caption: "Healing Hub somatic waveforms & LMS courses engine",
+        caption: "Healing Hub somatic waveforms & relational LMS engine",
       },
     ],
     problem:
-      "Statistically, Black 2SLGBTQ+ individuals face disproportionate rates of minority stress, medical discrimination, trauma, and isolation, yet are the least likely to find culturally competent, affirming mental health care. Traditional platforms lack privacy safeguards, trauma-informed design, and intersectional representation.",
-    solution:
-      "Architected and led the digital ecosystem for Black Pride and Black Pride Canada. Built a centralized WCAG 2.1 AA Members Portal, an end-to-end LMS Courses system with relational Mongoose progress tracking, the trauma-informed 'Healing Hub' with streaming somatic therapy routines and protected crisis escalation modals, and the AWS S3-backed historical Queer Archive. Served as primary frontend PR gatekeeper ensuring 99.9% uptime.",
+      "Two national community organizations needed unified, WCAG 2.1 AA-accessible digital platforms combining a relational LMS, a trauma-informed mental wellness hub with zero-latency crisis escalation, and strict PIPEDA privacy compliance across distributed teams.",
+    architecture: {
+      summary:
+        "Led frontend architecture and full-stack delivery across both platforms—combining a React 18 + TypeScript + Zustand/TanStack Query client shell with Express/MongoDB relational LMS schemas, atomic progress upserts, and AWS S3 media delivery.",
+      layers: [
+        {
+          layer: "Frontend Architecture",
+          detail:
+            "Shared TypeScript component tokens across Black Pride YYC & Canada, WCAG 2.1 AA accessibility, Zustand + TanStack Query caching, and instant crisis modal routing.",
+        },
+        {
+          layer: "LMS & Backend API",
+          detail:
+            "Node.js/Express API with JWT route guards, relational Mongoose models (Course, Lesson, Progress), and atomic upsert endpoints preventing completion race conditions.",
+        },
+        {
+          layer: "Media, Search & Governance",
+          detail:
+            "AWS S3-backed Queer Archive optimization, indexed taxonomy fuzzy search, and strict PR code-review gates across the engineering team.",
+        },
+      ],
+    },
+    impact: [
+      "Maintained 99.9% uptime and zero regressions through peak Pride Month advocacy traffic surges across North America",
+      "Scaled Education Hub & Queer Archive resource discoverability by 200%+ via taxonomy caching and AWS S3 asset optimization",
+      "Gatekept 100% of frontend PRs as Engineering Lead, enforcing strict TypeScript types and zero-regression deployment checks",
+      "Delivered trauma-informed crisis escalation routing and interactive LMS programming to thousands of community members",
+    ],
+    stackSummary: {
+      frontend: ["React 18", "TypeScript", "Zustand & TanStack Query"],
+      backend: ["Node.js / Express", "JWT Middleware", "REST APIs"],
+      dataInfra: ["MongoDB / Mongoose", "AWS S3", "WCAG 2.1 AA / PIPEDA"],
+    },
     tech: [
       "React 18",
       "TypeScript",
-      "Vite",
-      "Tailwind CSS",
       "Zustand",
       "TanStack Query",
       "Node.js",
-      "Express",
       "MongoDB",
       "AWS S3",
-      "Framer Motion",
     ],
     contributions: [
-      "Architected the Members Portal shell and led frontend delivery from design handoff to production with Vite, React 18, and TypeScript (WCAG 2.1 AA compliant).",
-      "Engineered the full-stack Courses & LMS engine: relational Mongoose schemas (Course, Lesson, Progress), atomic upserts, JWT route middleware, and a custom multi-format media player managed via Zustand and TanStack Query.",
-      "Built the Healing Hub mental wellness engine across 6 therapeutic verticals (somatic practices, burnout recovery, audio meditations) with persistent InProgress item tracking.",
-      "Implemented instant protected crisis escalation modals providing zero-friction confidential routing to 24/7 crisis helplines and immediate intervention resources.",
-      "Developed the historical Queer Archive with responsive multimedia galleries, AWS S3 image optimization, and fluid GSAP / Framer Motion animations.",
-      "Spearheaded the Education Hub expansion with scalable taxonomies, fuzzy search filters, and client indexing, scaling resource discoverability by over 200%.",
-      "Served as primary Engineering Gatekeeper, reviewing and merging 100% of frontend PRs, enforcing strict TypeScript definitions and zero regression standards.",
-      "Scaled international frontend architecture for sister platform Black Pride Canada, standardizing reusable design tokens, component libraries, and PIPEDA privacy compliance.",
+      "Translated Figma systems into structured engineering roadmaps and reusable token architecture across Black Pride YYC and Canada.",
+      "Served as primary code gatekeeper reviewing 100% of frontend PRs and enforcing TypeScript/accessibility standards.",
+      "Built the relational Mongoose LMS engine (Course, Lesson, Progress) with atomic upserts and multi-format media streaming.",
+      "Implemented the Healing Hub across 6 therapeutic verticals with protected, zero-friction crisis helpline escalation modals.",
     ],
-    impact: [
-      "Delivered culturally safe, trauma-informed mental wellness and crisis escalation tools to thousands of Black 2SLGBTQ+ community members across North America",
-      "Transformed the platform into an interactive educational SaaS, increasing member session duration and digital programming reach",
-      "Reduced search latency and scaled resource availability by over 200% with optimized taxonomy caching and AWS S3 delivery",
-      "Maintained 99.9% uptime and zero regressions during peak Pride month traffic surges and international advocacy campaigns",
-    ],
+    loomWalkthrough: {
+      url: siteConfig.projects.blackPride.loom,
+      duration: "2:00",
+      title: "Black Pride Ecosystem — Multi-Platform Architecture & LMS Deep Dive",
+      envKey: "NEXT_PUBLIC_BLACK_PRIDE_LOOM",
+      outline: [
+        { time: "0:00 – 0:25", topic: "Multi-org scope, WCAG 2.1 AA & trauma-informed constraints" },
+        { time: "0:25 – 1:05", topic: "Relational Mongoose LMS schemas & atomic progress sync" },
+        { time: "1:05 – 1:40", topic: "Healing Hub crisis escalation & AWS S3 archive optimization" },
+        { time: "1:40 – 2:00", topic: "PR gatekeeping standards & 99.9% surge reliability" },
+      ],
+    },
     links: {
+      github: siteConfig.projects.blackPride.github || undefined,
+      repoStatus: siteConfig.projects.blackPride.github ? "public" : "private",
+      repoLabel: "GITHUB REPO",
       live: siteConfig.projects.blackPride.yyc,
       liveLabel: "BLACK PRIDE YYC",
       secondaryLive: {
@@ -223,8 +357,9 @@ export const projects: Project[] = [
   },
   {
     id: "wearegriot",
-    title: "WeAreGriot — Arts & Culture Digital Ecosystem",
-    tagline: "High-Concurrency Ticketing, E-Commerce Merch & Headless Sanity CMS",
+    title: "WeAreGriot",
+    role: "Full-Stack Engineer",
+    tagline: "High-Concurrency Ticketing, Merch Commerce & Sanity v3 Operations",
     featured: true,
     image: "/projects/futuristic/griot-futuristic.jpg",
     images: [
@@ -241,53 +376,84 @@ export const projects: Project[] = [
       {
         src: "/projects/wearegriot.svg",
         label: "ARCHITECTURAL BLUEPRINT",
-        caption: "High-concurrency ticketing reservation & Sanity Studio v3",
+        caption: "Atomic ticketing reservation holds & Sanity Studio v3 ops",
       },
     ],
     problem:
-      "A renowned Nigerian-Irish cultural arts collective required a unified digital commerce and events platform. Challenges included translating art-directed Figma layouts with bespoke typography ('Haas Grot Disp Trial') into responsive web views, preventing inventory race conditions and ticket overselling during sudden drop spikes, and providing non-technical team members with real-time operations tools for door check-ins and order fulfillment.",
-    solution:
-      "Architected and built an end-to-end full-stack digital ecosystem. Engineered a high-concurrency event ticketing engine with temporary reservation holds and automated Stripe session timeout rollbacks, a variant-based merchandise store with atomic stock decrementing, a 3-step philanthropic donation funnel, and custom Sanity Studio v3 React operations tables with live MongoDB sync and one-click PDF/CSV attendee roster exports.",
+      "A cultural arts collective faced overselling risks during sudden ticket drops, lacked live door check-in validation, and needed non-technical staff to manage attendee rosters and donations without direct database access.",
+    architecture: {
+      summary:
+        "Architected a concurrency-safe Node.js/Express + MongoDB commerce and ticketing engine with temporary inventory reservation locks, Stripe/PayPal webhook rollbacks, AWS SES transactional emails, and custom Sanity Studio v3 React operations views.",
+      layers: [
+        {
+          layer: "Frontend & Ops Studio",
+          detail:
+            "React 18 + TypeScript storefront translated from art-directed Figma layouts, paired with custom Sanity Studio v3 GROQ-synced tables and PDF/CSV roster exports.",
+        },
+        {
+          layer: "Concurrency & Webhook Engine",
+          detail:
+            "Express REST API managing timed seat reservation holds, webhook-driven inventory rollbacks on checkout expiry, and anti-double-scan door redemption endpoints.",
+        },
+        {
+          layer: "Payments, Mail & CI/CD",
+          detail:
+            "Stripe Checkout & PayPal REST rails, AWS SES + Handlebars transactional dispatch, Sharp/SVGO asset optimization, and automated CI/CD pipelines.",
+        },
+      ],
+    },
+    impact: [
+      "Eliminated overselling and stranded stock during flash ticket drops via atomic reservation holds and idempotent webhook rollbacks",
+      "Enabled instant venue check-in operations with 6-character alphanumeric validation and anti-double-scan locking",
+      "Empowered non-technical event staff with live Sanity Studio attendee search and one-click PDF/CSV roster exports",
+      "Maintained sub-second asset delivery across media-heavy editorial galleries using Sharp and Vite image optimization",
+    ],
+    stackSummary: {
+      frontend: ["React 18", "TypeScript", "Sanity Studio v3"],
+      backend: ["Node.js / Express", "Webhook Rollbacks", "REST APIs"],
+      dataInfra: ["MongoDB", "Stripe & PayPal", "AWS SES & S3"],
+    },
     tech: [
       "React 18",
       "TypeScript",
-      "Vite 6",
-      "Tailwind CSS",
-      "TanStack Query v5",
-      "Zustand",
-      "Node.js",
       "Express",
-      "MongoDB / Mongoose",
-      "Stripe Checkout",
-      "PayPal REST API",
+      "MongoDB",
       "Sanity Studio v3",
+      "Stripe",
       "AWS SES",
-      "AWS S3",
     ],
     contributions: [
-      "Engineered high-concurrency event ticketing with temporary reservation holds, automatically releasing unsold capacity back to inventory upon checkout session expiration via webhooks.",
-      "Implemented door redemption API (POST /api/tickets/:id/redeem) with 6-character alphanumeric redemption codes, anti-double-scan validation, and real-time timestamp sync.",
-      "Built e-commerce merch pipeline with atomic product size variant stock decrements, automated rollbacks upon payment failure, and persistent Zustand cart state.",
-      "Developed custom Sanity Studio v3 back-office React table views with real-time search, status pills (Active, Checked In, Cancelled), and jsPDF/autotable and CSV export routines.",
-      "Architected 3-step philanthropic donation funnel supporting one-time and recurring contributions, honoree dedications, and anonymous modes routed to Stripe and PayPal.",
-      "Converted high-fidelity art-directed Figma layouts into pixel-perfect, accessible, mobile-first views with Haas Grot Disp Trial typography and press media carousels.",
-      "Integrated AWS SES transactional email pipeline with Handlebars templating and automated zero-downtime Bitbucket CI/CD deployment workflows.",
+      "Engineered timed ticket reservation locks with automated Stripe webhook rollbacks on checkout timeout or failure.",
+      "Built the door redemption API (POST /api/tickets/:id/redeem) preventing duplicate entry scans in real time.",
+      "Created custom Sanity Studio v3 React back-office tables with live MongoDB sync and jsPDF/CSV export tooling.",
+      "Translated bespoke art-directed Figma layouts into accessible responsive views and wired Bitbucket CI/CD deployments.",
     ],
-    impact: [
-      "Eliminated overselling and stranded inventory during high-traffic ticket drop spikes with atomic reservation holds and webhook rollbacks",
-      "Streamlined door operations for live theatre performances with real-time QR/alphanumeric code validation and anti-double-scan checks",
-      "Empowered non-technical event coordinators to manage attendees and export PDF/CSV rosters directly within Sanity Studio without database access",
-      "Achieved sub-second asset delivery on media-rich editorial galleries using Sharp, SVGO, and Vite image optimization plugins",
-    ],
+    loomWalkthrough: {
+      url: siteConfig.projects.weAreGriot.loom,
+      duration: "2:00",
+      title: "WeAreGriot — Concurrency Locks & Sanity Studio Ops Walkthrough",
+      envKey: "NEXT_PUBLIC_WEAREGRIOT_LOOM",
+      outline: [
+        { time: "0:00 – 0:25", topic: "Flash-drop overselling problem & venue operations gap" },
+        { time: "0:25 – 1:05", topic: "Reservation holds, webhook idempotency & atomic stock locks" },
+        { time: "1:05 – 1:40", topic: "Custom Sanity Studio v3 React ops tables & door scanner API" },
+        { time: "1:40 – 2:00", topic: "AWS SES pipeline & operational outcomes" },
+      ],
+    },
     links: {
+      github: siteConfig.projects.weAreGriot.github || undefined,
+      repoStatus: siteConfig.projects.weAreGriot.github ? "public" : "private",
+      repoLabel: "GITHUB REPO",
       live: siteConfig.projects.weAreGriot.live,
+      liveLabel: "LIVE PLATFORM",
     },
   },
   {
     id: "crypto-tax",
     title: "Crypto Portfolio & Tax Manager",
-    tagline: "Portfolio Tracking & Tax Reporting (In Active Development)",
-    status: "STILL IN THE WORKS",
+    role: "Systems Architect (Active Build)",
+    tagline: "Multi-Chain Transaction Ingestion & Automated FIFO/LIFO Ledger",
+    status: "IN ACTIVE DEVELOPMENT",
     image: "/projects/futuristic/crypto-futuristic.jpg",
     images: [
       {
@@ -303,38 +469,140 @@ export const projects: Project[] = [
       {
         src: "/projects/crypto-tax.svg",
         label: "ARCHITECTURAL BLUEPRINT",
-        caption: "Multi-wallet transaction ingestion and tax schedule engine",
+        caption: "NestJS ingestion workers, PostgreSQL ledger & tax scheduler",
       },
     ],
     problem:
-      "Crypto investors struggle to aggregate transactions across multiple chains and wallets, calculate accurate cost basis / PnL, and generate tax-ready reports without expensive third-party tools.",
-    solution:
-      "[Still In The Works] Currently engineering an automated portfolio and tax reporting architecture that aggregates multi-wallet transaction history, computes capital gains/losses across DeFi transactions, and surfaces real-time tax accounting through a streamlined React dashboard.",
+      "Multi-chain DeFi users lack an accurate, deterministic way to reconcile wallet transfers, swaps, and gas fees across chains to compute compliant FIFO/LIFO cost basis without manual spreadsheet reconciliation.",
+    architecture: {
+      summary:
+        "Designing a Next.js App Router + NestJS microservice ledger backed by PostgreSQL transactional tables and asynchronous RPC indexing workers via ethers.js.",
+      layers: [
+        {
+          layer: "Frontend & Ledger UI",
+          detail:
+            "Next.js App Router + TypeScript portfolio analytics interface surfacing unrealized PnL, realized tax events, and schedule exports.",
+        },
+        {
+          layer: "Backend Ingestion Workers",
+          detail:
+            "NestJS modular services normalizing multi-chain EVM events via ethers.js and classifying swaps, bridges, and transfers.",
+        },
+        {
+          layer: "Transactional Tax Engine",
+          detail:
+            "PostgreSQL double-entry ledger schema powering deterministic FIFO/LIFO lot matching and auditable CSV/PDF tax reports.",
+        },
+      ],
+    },
+    impact: [
+      "Architecting unified multi-wallet transaction ingestion and normalization across EVM networks",
+      "Implementing deterministic FIFO/LIFO cost-basis lot matching in PostgreSQL with full auditability",
+      "Structuring automated tax schedule generation and export workflows (CSV/PDF)",
+    ],
+    stackSummary: {
+      frontend: ["Next.js (App Router)", "React", "TypeScript"],
+      backend: ["NestJS", "ethers.js", "Worker Queues"],
+      dataInfra: ["PostgreSQL", "Docker", "Blockchain RPCs"],
+    },
     tech: [
-      "React",
       "Next.js",
+      "TypeScript",
       "NestJS",
       "PostgreSQL",
-      "Blockchain APIs",
       "ethers.js",
+      "Blockchain APIs",
     ],
-    impact: [
-      "Building unified multi-wallet transaction ingestion architecture",
-      "Designing automated PnL and FIFO/LIFO cost-basis calculation algorithms",
-      "Structuring tax reporting workflows and CSV/PDF schedule exports",
-    ],
+    loomWalkthrough: {
+      url: siteConfig.projects.cryptoTax.loom,
+      duration: "2:00",
+      title: "Crypto Tax Engine — Ledger Schema & FIFO Pipeline Walkthrough",
+      envKey: "NEXT_PUBLIC_CRYPTO_TAX_LOOM",
+      outline: [
+        { time: "0:00 – 0:25", topic: "Cross-chain DeFi reconciliation challenges" },
+        { time: "0:25 – 1:05", topic: "NestJS indexing workers & PostgreSQL ledger model" },
+        { time: "1:05 – 1:40", topic: "FIFO/LIFO lot matching & Next.js dashboard walkthrough" },
+        { time: "1:40 – 2:00", topic: "Roadmap & upcoming export automation" },
+      ],
+    },
     links: {
-      github: siteConfig.projects.cryptoTax.github,
+      github: siteConfig.projects.cryptoTax.github || siteConfig.github,
+      repoStatus: "public",
+      repoLabel: "GITHUB REPO",
     },
   },
 ];
 
+export const techStackTiers: TechTier[] = [
+  {
+    id: "frontend",
+    num: "01",
+    label: "Frontend & UI",
+    summary:
+      "Accessible, type-safe interfaces engineered with strict state boundaries and sub-second rendering.",
+    items: [
+      { name: "Next.js (App Router / SSR)", context: "Server rendering, streaming & edge-ready routing" },
+      { name: "React 18/19 & React Native", context: "Web & cross-platform iOS/Android operator apps" },
+      { name: "TypeScript (Strict)", context: "End-to-end contract safety across API & UI" },
+      { name: "Tailwind CSS", context: "Scalable design-token & responsive systems" },
+      { name: "Zustand & TanStack Query", context: "Predictable client state & server cache sync" },
+      { name: "Three.js / WebXR / Web Audio", context: "Interactive 3D & zero-asset procedural UX" },
+    ],
+  },
+  {
+    id: "backend",
+    num: "02",
+    label: "Backend & APIs",
+    summary:
+      "Modular services built for concurrency control, clean API contracts, and real-time event delivery.",
+    items: [
+      { name: "NestJS Microservices", context: "Dependency-injected modules, guards & queues" },
+      { name: "Node.js & Express", context: "High-throughput APIs & webhook processors" },
+      { name: "REST & GraphQL / GROQ", context: "Typed API design & headless CMS synchronization" },
+      { name: "WebSockets & SSE", context: "Real-time bidding streams & live status feeds" },
+      { name: "RBAC & JWT Auth", context: "Multi-tenant permissions & magic-link flows" },
+      { name: "Stripe / PayPal Webhooks", context: "Idempotent checkout & automated rollbacks" },
+    ],
+  },
+  {
+    id: "databases-infra",
+    num: "03",
+    label: "Databases & Infra",
+    summary:
+      "Durable data modeling paired with reliable cloud deployments, caching, and CI/CD automation.",
+    items: [
+      { name: "PostgreSQL", context: "Relational integrity, transactions & query tuning" },
+      { name: "MongoDB & Mongoose", context: "Atomic document locks & relational LMS schemas" },
+      { name: "Redis", context: "Distributed caching, rate limiting & job queues" },
+      { name: "Docker & PM2", context: "Containerized services & zero-downtime clustering" },
+      { name: "AWS (EC2, S3, SES) & Vercel", context: "Cloud compute, media pipelines & transactional mail" },
+      { name: "CI/CD & Automated Testing", context: "GitHub/Bitbucket pipelines & regression gates" },
+    ],
+  },
+  {
+    id: "ai-systems",
+    num: "04",
+    label: "AI Systems",
+    summary:
+      "Production LLM orchestration designed around latency budgets, tool safety, and measurable resolution.",
+    items: [
+      { name: "LLM Tool Calling", context: "Schema-validated function execution & guardrails" },
+      { name: "Autonomous Agent Workflows", context: "Multi-step ticket triage & escalation routing" },
+      { name: "Vector Stores & RAG", context: "Semantic retrieval pipelines over tenant knowledge" },
+      { name: "OpenAI SDK Pipelines", context: "Structured outputs, streaming & fallback handling" },
+      { name: "Automated Onboarding Flows", context: "AI business extraction & training data ingestion" },
+      { name: "Evaluation & Telemetry", context: "Tracking resolution accuracy & human-handoff delta" },
+    ],
+  },
+];
+
+/** Flat stack preserved for TerminalDrawer compatibility */
 export const techStack = {
-  languages: ["Python", "Go", "Node.js", "TypeScript"],
-  databases: ["PostgreSQL", "MongoDB"],
+  languages: ["TypeScript", "JavaScript", "Python", "Go"],
+  databases: ["PostgreSQL", "MongoDB", "Redis"],
   blockchain: ["Solidity", "ethers.js"],
-  frontend: ["React 18/19", "Next.js", "Vite", "Tailwind CSS", "Zustand", "TanStack Query"],
-  backend: ["NestJS", "Node.js", "Express", "Server-Sent Events (SSE)"],
-  ai: ["OpenAI", "Vector Stores", "Automation Pipelines"],
-  cloud: ["REST APIs", "AWS S3 / SES / EC2", "Sanity Studio CMS", "Stripe & PayPal", "Web Audio API", "WebXR / Three.js", "PM2"],
+  frontend: ["Next.js", "React 18/19", "React Native", "Tailwind CSS", "Zustand", "TanStack Query"],
+  backend: ["NestJS", "Node.js", "Express", "REST & GraphQL", "WebSockets & SSE"],
+  ai: ["LLM Tool Calling", "Agent Workflows", "Vector Stores / RAG", "OpenAI Pipelines"],
+  cloud: ["Docker", "AWS (EC2, S3, SES)", "Vercel", "PM2", "CI/CD", "Stripe & PayPal"],
 };

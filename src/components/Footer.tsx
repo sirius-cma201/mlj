@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/lib/config";
+import { Logo } from "./Logo";
 
-export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
+export function Footer({ chapterNum = "06" }: { chapterNum?: string }) {
   const [copied, setCopied] = useState(false);
   const [time, setTime] = useState("");
   const year = new Date().getFullYear();
@@ -32,6 +33,12 @@ export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
     setTimeout(() => setCopied(false), 2400);
   };
 
+  const scheduleHref =
+    siteConfig.calendarUrl ||
+    `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+      "Engineering Opportunity — Intro Call"
+    )}`;
+
   return (
     <footer
       id="contact"
@@ -52,18 +59,18 @@ export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
           <div className="sys-grid-backdrop absolute inset-0 pointer-events-none opacity-50" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-7">
               <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/20 px-3 py-1 font-mono text-xs text-emerald-400 mb-6">
                 <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>ACCEPTING SELECT ENGAGEMENTS &amp; CONTRACTS</span>
+                <span>OPEN TO INTERNATIONAL REMOTE ROLES &amp; SENIOR CONTRACTS</span>
               </span>
 
-              <h2 className="sys-display text-3xl sm:text-4xl lg:text-5xl text-[var(--system-ink)] max-w-[14ch]">
-                Let&apos;s build software that holds up under pressure.
+              <h2 className="sys-display text-3xl sm:text-4xl lg:text-5xl text-[var(--system-ink)] max-w-[15ch]">
+                Let&apos;s build production systems that scale.
               </h2>
 
-              <p className="mt-6 max-w-[44ch] text-base sm:text-lg text-[var(--system-ink-70)] leading-relaxed">
-                Available for AI automation architecture, backend scaling, and production-ready SaaS systems.
+              <p className="mt-6 max-w-[46ch] text-base sm:text-lg text-[var(--system-ink-70)] leading-relaxed">
+                Full-Stack &amp; AI Systems Engineering across Next.js, NestJS, TypeScript, PostgreSQL, and autonomous agent workflows. Overlapping US &amp; EU timezones seamlessly from UTC+1.
               </p>
               <div className="mt-4 flex items-center gap-2 font-mono text-xs text-cyan-400">
                 <span className="size-1.5 rounded-full bg-cyan-400" />
@@ -73,31 +80,16 @@ export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
               </div>
             </div>
 
-            {/* Actions: Copy Email + Direct Email */}
-            <div className="lg:col-span-4 flex flex-col gap-4">
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="sys-btn-primary group w-full"
-                data-cursor-label="COPY"
-              >
-                <span>{copied ? "COPIED TO CLIPBOARD ✓" : "COPY EMAIL ADDRESS"}</span>
-                <svg
-                  width="11"
-                  height="11"
-                  viewBox="0 0 10 10"
-                  aria-hidden="true"
-                  className="sys-cross-icon shrink-0"
-                >
-                  <path d="M5 0v10M0 5h10" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
-              </button>
-
+            {/* Actions: Book Call / Direct Email / Copy Email */}
+            <div className="lg:col-span-5 flex flex-col gap-3">
               <a
-                href={`mailto:${siteConfig.email}`}
-                className="sys-btn-secondary group w-full text-center"
+                href={scheduleHref}
+                target={siteConfig.calendarUrl ? "_blank" : undefined}
+                rel={siteConfig.calendarUrl ? "noopener noreferrer" : undefined}
+                className="sys-btn-primary group w-full text-center"
+                data-cursor-label="SCHEDULE"
               >
-                <span>LAUNCH MAIL CLIENT</span>
+                <span>{siteConfig.calendarUrl ? "BOOK INTRO CALL (CALENDAR)" : "GET IN TOUCH // SCHEDULE CALL"}</span>
                 <svg
                   width="10"
                   height="10"
@@ -115,6 +107,24 @@ export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
                   />
                 </svg>
               </a>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="sys-btn-secondary group w-full !px-4 !py-3 !text-[11px]"
+                  data-cursor-label="COPY"
+                >
+                  <span>{copied ? "COPIED ✓" : "COPY EMAIL"}</span>
+                </button>
+
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="sys-btn-secondary group w-full text-center !px-4 !py-3 !text-[11px]"
+                >
+                  <span>EMAIL DIRECT ↗</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -141,21 +151,33 @@ export function Footer({ chapterNum = "03" }: { chapterNum?: string }) {
                   <span>↗</span>
                 </a>
               )}
+              <a
+                href="/Joseph_Ayeni_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+              >
+                <span>CV (PDF)</span>
+                <span>↗</span>
+              </a>
             </div>
 
             <div className="flex items-center gap-4 text-[var(--system-ink-45)]">
               <span>TIME: {time || "00:00:00 UTC"}</span>
               <span>·</span>
-              <span>TELEMETRY: LEVEL 7 CLEARANCE // STABLE</span>
+              <span>REMOTE READY // INTERNATIONAL</span>
             </div>
           </div>
         </div>
 
         {/* Colophon & Bottom Bar */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[var(--system-ink-45)]">
-          <p>
-            © {year} {siteConfig.name}. COGNITIVE ARCHITECTURE ENGINE.
-          </p>
+          <div className="flex items-center gap-2.5">
+            <Logo size={18} glow={false} />
+            <p>
+              © {year} {siteConfig.fullName} ({siteConfig.name}). FULL-STACK &amp; AI SYSTEMS ARCHITECTURE.
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <button
               type="button"
